@@ -86,11 +86,40 @@ nav {
     align-items: flex-start;
     gap: 2rem;
     margin-top: 2rem;
-    margin-bottom: 3rem; /* 👈 lägger till avstånd nedåt */
+    margin-bottom: 3rem;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-columns {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    background: rgba(255,255,255,0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.about-text {
+    flex: 2;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.about-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.about-links a:hover {
+    color: #000;
 }
