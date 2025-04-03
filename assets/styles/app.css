@@ -1,13 +1,8 @@
 body {
-    background-color: skyblue;
-}
-body {
+    margin: 0;
+    padding: 0;
     margin: 0 auto;
-    max-width: 600px;
-}
-
-h1 {
-    border-bottom: 4px double #ccc;
+    color: #333;
 }
 
 .site-header {
@@ -27,6 +22,7 @@ h1 {
 
 nav {
     background-color: #fff;
+    margin-top: 5px;
     padding: 1rem;
     border-bottom: 2px solid #ddd;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -56,4 +52,45 @@ h1 {
     border-bottom: 3px solid #ccc;
     padding-bottom: 0.5rem;
     margin-top: 2rem;
+}
+
+.profile-section p {
+    flex: 2;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.profile-section img {
+    flex: 1;
+    max-width: 200px;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.profile-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem; /* 👈 lägger till avstånd nedåt */
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
