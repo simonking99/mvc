@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}API Overview{% endblock %}
+
+{% block body %}
+<h1>API Overview</h1>
+
+<p>This page lists all available <strong>JSON API endpoints</strong> on this site:</p>
+
+<ul>
+    <li>
+        <a href="/api/quote" target="_blank">/api/quote</a> – Returns a random quote with date and timestamp (JSON only)
+    </li>
+</ul>
+
+<hr>
+
+<h2>Other application routes</h2>
+<ul>
+    <li><a href="/home">/home</a> – Landing page</li>
+    <li><a href="/about">/about</a> – About the course/project</li>
+    <li><a href="/report">/report</a> – Course reports with anchor links per kmom</li>
+    <li><a href="/lucky">/lucky</a> – Shows a random number</li>
+</ul>
+{% endblock %}
