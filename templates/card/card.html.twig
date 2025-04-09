@@ -4,6 +4,18 @@
 
 {% block body %}
     <h1>Card</h1>
-    <div class="body-section">
+
+    <div class="card-section">
+        <div class="text-block">
+            <ul>
+                <li><strong>Card</strong> – Representerar ett vanligt spelkort med färg (♠ ♥ ♦ ♣).</li>
+                <li><strong>CardGraphic</strong> – Ärver från Card och innehåller ett sätt att visa kortet med Unicode.</li>
+                <li><strong>CardHand</strong> – Representerar en hand med kort och innehåller en lista av Card-objekt.</li>
+                <li><strong>DeckOfCards</strong> – Representerar hela kortleken. Kortleken kan blandas och dra kort.</li>
+            </ul>
+        </div>
+        <div class="image-block">
+            <img src="{{ asset('img/uml.png') }}" alt="UML-diagram för kortklasser" class="uml">
+        </div>
     </div>
 {% endblock %}
