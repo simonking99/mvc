@@ -289,3 +289,26 @@ h1 {
     border: 1px solid #ddd;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+.card-links {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: flex-start;
+}
+
+.card-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.card-link:hover {
+    background-color: #005fa3;
+}
