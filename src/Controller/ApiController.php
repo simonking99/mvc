@@ -65,17 +65,18 @@ class ApiController extends AbstractController
             "The truth is rarely pure and never simple. - Oscar Wilde",
             "A day without laughter is a day wasted. - Charlie Chaplin",
         ];
-        
-
+    
         $quote = $quotes[array_rand($quotes)];
-
+    
         return $this->json(
             [
                 'quote' => $quote,
+                'date' => date('Y-m-d'),
+                'time' => date('H:i:s'),
             ],
             200,
             [],
             ['json_encode_options' => JSON_PRETTY_PRINT]
         );
-    }
+    }    
 }
