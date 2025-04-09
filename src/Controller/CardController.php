@@ -69,4 +69,25 @@ class CardController extends AbstractController
             'remaining' => $deck->count()
         ]);
     }
+
+    #[Route("/card/deck/draw/{number}", name: "card_draw_number", requirements: ["number" => "\d+"])]
+    public function card_draw_number(SessionInterface $session, int $number): Response
+    {
+        $deck = $session->get('deck');
+
+        if (!$deck) {
+            $deck = new DeckOfCards(true);
+        }
+
+        $drawn = $deck->draw($number);
+        $session->set('deck', $deck);
+
+        $this->addFlash('message', "Cards drawn from the deck: $number.");
+
+        return $this->render('card/card_draw_multiple.html.twig', [
+            'drawn' => $drawn,
+            'remaining' => $deck->count(),
+            'amount' => $number
+        ]);
+    }
 }
