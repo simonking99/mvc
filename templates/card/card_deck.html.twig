@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortlek{% endblock %}
+
+{% block body %}
+    <h1>Deck of cards</h1>
+    <div class="body-section">
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            {% for card in cards %}
+                {% set suit = card.getSuit() %}
+                {% set color = (suit == '♥' or suit == '♦') ? 'red' : 'black' %}
+                <div style="font-size: 1.5rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 6px; color: {{ color }};">
+                    {{ card }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
