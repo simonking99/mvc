@@ -1,4 +1,4 @@
-![Header Image](public/img/simon.jpg)
+![Header Image](public/img/s1.jpg)
 
 # MVC-kursen 
 Detta är min applikation för för kursen MVC vid BTH:s program för Webbprogrammering.  
