@@ -49,4 +49,24 @@ class CardController extends AbstractController
             'cards' => $deck->getCards()
         ]);
     }
+
+    #[Route("/card/deck/draw", name: "card_draw")]
+    public function card_draw(SessionInterface $session): Response
+    {
+        $deck = $session->get('deck');
+
+        if (!$deck) {
+            $deck = new DeckOfCards(true);
+        }
+
+        $drawn = $deck->draw(1);
+        $session->set('deck', $deck);
+        $this->addFlash('message', 'Card has been drawn.');
+
+
+        return $this->render('card/card_draw.html.twig', [
+            'drawn' => $drawn,
+            'remaining' => $deck->count()
+        ]);
+    }
 }
