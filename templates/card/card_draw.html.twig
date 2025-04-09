@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Draw card{% endblock %}
+
+{% block body %}
+    <h1>Draw card from the deck</h1>
+    <div class="body-section">
+
+    <p><strong>Cards left in the deck: </strong> {{ remaining }}</p>
+
+    <div style="font-size: 2rem; margin-top: 1rem;">
+        {% set color = (drawn[0].getSuit() == '♥' or drawn[0].getSuit() == '♦') ? 'red' : 'black' %}
+        <span style="color: {{ color }};"><p>Drawn card:</p> {{ drawn[0] }}</span>
+    </div>
+    </div>
+{% endblock %}
