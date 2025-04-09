@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session Debug{% endblock %}
+
+{% block body %}
+    <h1>Session Debug</h1>
+    <div class="body-section">
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endfor %}
+    <pre>
+        {{ sessionData|json_encode(constant('JSON_PRETTY_PRINT')) }}
+    </pre>
+    <form action="{{ path('session_delete') }}" method="post">
+        <button type="submit">Radera session</button>
+    </form>
+    </div>
+{% endblock %}
+
