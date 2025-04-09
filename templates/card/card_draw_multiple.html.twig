@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Draw multiple cards{% endblock %}
+
+{% block body %}
+    <h1>Draw cards</h1>
+
+    <div class="body-section">
+        <p><strong>Cards left in the deck:</strong> {{ remaining }}</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+            <p>Cards drawn: </p>
+            {% for card in drawn %}
+                {% set color = (card.getSuit() == '♥' or card.getSuit() == '♦') ? 'red' : 'black' %}
+                <div style="font-size: 2rem; color: {{ color }};">
+                    {{ card }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
