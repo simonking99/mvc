@@ -77,6 +77,7 @@ class ApiController extends AbstractController
     #[Route('/api/quote', name: 'api_quote')]
     public function quote(): JsonResponse
     {
+        date_default_timezone_set('Europe/Stockholm');
         $quotes = [
             "Do or do not. There is no try. - Yoda",
             "Life is what happens when you're busy making other plans. - John Lennon",
