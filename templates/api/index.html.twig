@@ -40,5 +40,17 @@
                 </form>
             </div>
         </div>
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>POST /api/deck/draw/:number</strong><br>
+                Draws the specified number of cards from the session-based deck.
+            </div>
+            <div class="api-action">
+                <form method="post" action="" onsubmit="this.action='/api/deck/draw/' + this.elements['number'].value">
+                    <input type="number" name="number" min="1" max="52" required>
+                    <button type="submit" class="api-button">Draw multiple cards</button>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}
