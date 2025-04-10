@@ -65,4 +65,25 @@ class ApiCardController extends AbstractController
         ]);
     }
 
+    #[Route("/api/deck/draw/{number}", name: "api_deck_draw_number", requirements: ["number" => "\d+"], methods: ["POST"])]
+    public function apiDrawNumber(int $number, SessionInterface $session): JsonResponse
+    {
+        $deck = $session->get('deck');
+    
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards(true);
+            $deck->shuffle();
+        }
+        $number = min($number, $deck->count());
+    
+        $drawn = $deck->draw($number);
+        $session->set('deck', $deck);
+    
+        return $this->json([
+            'drawn' => array_map(fn($card) => (string) $card, $drawn),
+            'requested' => $number,
+            'remaining' => $deck->count()
+        ]);
+    }
+    
 }
