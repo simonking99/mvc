@@ -21,11 +21,22 @@
         <div class="api-endpoint">
             <div class="api-description">
                 <strong>POST /api/deck/shuffle</strong><br>
-                Shuffles the deck, stores it in the session and returns JSON.
+                Shuffles the deck, stores it in the session and returns as JSON.
             </div>
             <div class="api-action">
                 <form method="post" action="{{ path('api_deck_shuffle') }}">
                     <button type="submit" class="api-button">Shuffle deck</button>
+                </form>
+            </div>
+        </div>
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>POST /api/deck/draw</strong><br>
+                Draws one card from the deck stored in session.
+            </div>
+            <div class="api-action">
+                <form method="post" action="{{ path('api_deck_draw') }}">
+                    <button type="submit" class="api-button">Draw 1 card</button>
                 </form>
             </div>
         </div>
