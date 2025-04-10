@@ -1,10 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}API-landningssida{% endblock %}
+{% block title %}API Overview{% endblock %}
 
 {% block body %}
-    <h1>API</h1>
+    <h1>JSON API Overview</h1>
 
-    <p>Här är en översikt över de JSON API-routes du kan använda:</p>
+    <div class="api-section">
+        <p>This is a summary of all available JSON API endpoints in the project:</p>
 
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>GET /api/deck</strong><br>
+                Returns a sorted deck of cards in JSON format.
+            </div>
+            <div class="api-action">
+                <a href="{{ path('api_deck') }}" class="api-button">Show deck</a>
+            </div>
+        </div>
+
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>POST /api/deck/shuffle</strong><br>
+                Shuffles the deck, stores it in the session and returns JSON.
+            </div>
+            <div class="api-action">
+                <form method="post" action="{{ path('api_deck_shuffle') }}">
+                    <button type="submit" class="api-button">Shuffle deck</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
