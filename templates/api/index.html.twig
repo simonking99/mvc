@@ -52,5 +52,24 @@
                 </form>
             </div>
         </div>
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>GET /api/lucky/number</strong><br>
+                Returns a random lucky number in JSON format.
+            </div>
+            <div class="api-action">
+                <a href="{{ path('api_lucky_number') }}" class="api-button">Get lucky number</a>
+            </div>
+        </div>
+
+        <div class="api-endpoint">
+            <div class="api-description">
+                <strong>GET /api/quote</strong><br>
+                Returns a random quote as JSON.
+            </div>
+            <div class="api-action">
+                <a href="{{ path('api_quote') }}" class="api-button">Get quote</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
