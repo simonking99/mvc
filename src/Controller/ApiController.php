@@ -34,8 +34,32 @@ class ApiController extends AbstractController
                 'description' => 'Returns the about page',
             ],
             [
-                'path' => '/report',
-                'description' => 'Returns the report page',
+                'path' => '/session',
+                'description' => 'Returns information about session',
+            ],
+            [
+                'path' => '/card',
+                'description' => 'Returns card landing page',
+            ],
+            [
+                'path' => '/card/deck',
+                'description' => 'Returns a deck of cards',
+            ],
+            [
+                'path' => '/card/deck/shuffle',
+                'description' => 'Returns a shuffled deck of cards',
+            ],
+            [
+                'path' => '/card/deck/shuffle',
+                'description' => 'Returns a shuffled deck of cards',
+            ],
+            [
+                'path' => '/card/deck/draw',
+                'description' => 'Returns a drawn card from the deck',
+            ],
+            [
+                'path' => '/card/deck/draw/:number',
+                'description' => 'Return multiple drawn cards from the deck',
             ],
         ];
 
