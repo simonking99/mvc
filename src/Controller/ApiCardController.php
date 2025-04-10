@@ -43,9 +43,8 @@ class ApiCardController extends AbstractController
         $cards = array_map(fn($card) => (string) $card, $deck->getCards());
 
         return $this->json([
-            'deck' => $cards,
-            'count' => count($cards),
-            'status' => 'shuffled'
+            'deck' => $cards
         ]);
+        error_log("post /api/deck/shuffle anropades");
     }
 }
