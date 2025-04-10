@@ -20,7 +20,7 @@ class CardController extends AbstractController
     public function card_deck(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
-    
+
         if (!$deck) {
             $deck = new DeckOfCards(true);
             $session->set('deck', $deck);

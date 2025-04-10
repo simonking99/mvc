@@ -27,7 +27,7 @@ class ApiCardController extends AbstractController
         foreach ($cards as $card) {
             $data[] = $card->__toString();
         }
-        
+
         return $this->json([
             'deck' => $data,
             'count' => count($data)
@@ -40,7 +40,7 @@ class ApiCardController extends AbstractController
         $deck = new DeckOfCards(true);
         $deck->shuffle();
         $session->set('deck', $deck);
-        $cards = array_map(fn($card) => (string) $card, $deck->getCards());
+        $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
 
         return $this->json([
             'deck' => $cards
@@ -60,7 +60,7 @@ class ApiCardController extends AbstractController
         $session->set('deck', $deck);
 
         return $this->json([
-            'drawn' => array_map(fn($card) => (string) $card, $drawn),
+            'drawn' => array_map(fn ($card) => (string) $card, $drawn),
             'remaining' => $deck->count()
         ]);
     }
@@ -69,21 +69,21 @@ class ApiCardController extends AbstractController
     public function apiDrawNumber(int $number, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck');
-    
+
         if (!$deck instanceof DeckOfCards) {
             $deck = new DeckOfCards(true);
             $deck->shuffle();
         }
         $number = min($number, $deck->count());
-    
+
         $drawn = $deck->draw($number);
         $session->set('deck', $deck);
-    
+
         return $this->json([
-            'drawn' => array_map(fn($card) => (string) $card, $drawn),
+            'drawn' => array_map(fn ($card) => (string) $card, $drawn),
             'requested' => $number,
             'remaining' => $deck->count()
         ]);
     }
-    
+
 }
