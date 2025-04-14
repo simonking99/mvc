@@ -5,16 +5,28 @@
 {% block body %}
 <h1>Game Documentation</h1>
 <div class="body-section">
-    <p>
-    To create the card game 21, I will reuse the classes I developed in kmom02. These include the
-    Card class for creating cards, the DeckOfCards class for managing the entire deck of cards,
-    and the CardHand class for keeping track of the player's hand during the game. 
-    I also plan to create a new class responsible for the game logic and calculating the points.
-    </p>
+    <div class="image-container">
+        <strong class="aligned-text">Game Description</strong>
+        <p>
+            To create the card game 21, I will reuse the classes I developed in kmom02. These include the
+            Card class for creating cards, the DeckOfCards class for managing the entire deck of cards,
+            and the CardHand class for keeping track of the player's hand during the game. 
+            I also plan to create a new class responsible for the game logic and calculating the points.
+        </p>
+    </div>
 
-    <!-- Link to the image which will open in a new tab when clicked -->
-    <a href="{{ asset('img/board.png') }}" target="_blank">
-        <img src="{{ asset('img/board.png') }}" alt="board" width="250px" />
-    </a>
+    <div class="image-container">
+        <strong class="aligned-text">Board Layout</strong>
+        <a href="{{ asset('img/board.png') }}" target="_blank">
+            <img src="{{ asset('img/board.png') }}" alt="Board Layout" width="300px" />
+        </a>
+    </div>
+    
+    <div class="image-container" style="margin-top: 20px;">
+        <strong class="aligned-text">Pseudocode</strong>
+        <a href="{{ asset('img/pcode.png') }}" target="_blank">
+            <img src="{{ asset('img/pcode.png') }}" alt="Pseudocode" width="300px" height="350px" />
+        </a>
+    </div>
 </div>
 {% endblock %}
