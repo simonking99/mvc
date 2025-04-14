@@ -84,4 +84,26 @@ class GameController extends AbstractController
             'winner' => $winner,
         ]);
     }
+
+    #[Route('/game/stand', name: 'game_stand')]
+    public function stand(SessionInterface $session): Response
+    {
+        $game = $session->get('game');
+        if (!$game) {
+            return $this->redirectToRoute('game_start');
+        }
+
+        $game->dealerTurn();
+
+        $session->set('game', $game);
+
+        return $this->render('game/start.html.twig', [
+            'game' => $game,
+            'playerHand' => $game->getPlayerHand()->getCards(),
+            'dealerHand' => $game->getDealerHand()->getCards(),
+            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
+            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
+            'winner' => $game->getWinner(),
+        ]);
+    }
 }
