@@ -18,35 +18,45 @@ class ApiCardController extends AbstractController
     }
 
     #[Route("/api/deck", name: "api_deck", methods: ["GET"])]
-    public function apiDeck(): JsonResponse
+    public function apiDeck(SessionInterface $session): JsonResponse
     {
-        $deck = new DeckOfCards(true);
-        $cards = $deck->getCards();
-        $data = [];
-
-        foreach ($cards as $card) {
-            $data[] = $card->__toString();
+        $deck = $session->get('deck');
+    
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards(true);
+            $session->set('deck', $deck);
         }
-
+    
+        $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
+    
         return $this->json([
-            'deck' => $data,
-            'count' => count($data)
+            'deck' => $cards,
+            'count' => count($cards)
         ]);
     }
+    
 
     #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["POST"])]
     public function apiShuffle(SessionInterface $session): JsonResponse
     {
-        $deck = new DeckOfCards(true);
+        $deck = $session->get('deck');
+    
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards(true);
+        }
+    
         $deck->shuffle();
         $session->set('deck', $deck);
+    
         $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
-
+    
+        error_log("post /api/deck/shuffle anropades");
+    
         return $this->json([
             'deck' => $cards
         ]);
-        error_log("post /api/deck/shuffle anropades");
     }
+    
 
     #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["POST"])]
     public function apiDrawCard(SessionInterface $session): JsonResponse
