@@ -106,8 +106,8 @@ class ApiCardController extends AbstractController
         }
 
         return $this->json([
-            'playerHand' => array_map(fn($card) => $card->__toString(), $game->getPlayerHand()->getCards()),
-            'dealerHand' => array_map(fn($card) => $card->__toString(), $game->getDealerHand()->getCards()),
+            'playerHand' => array_map(fn ($card) => $card->__toString(), $game->getPlayerHand()->getCards()),
+            'dealerHand' => array_map(fn ($card) => $card->__toString(), $game->getDealerHand()->getCards()),
             'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
             'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
             'winner' => $game->getWinner()
