@@ -106,4 +106,12 @@ class GameController extends AbstractController
             'winner' => $game->getWinner(),
         ]);
     }
+
+    #[Route('/game/reset', name: 'game_reset')]
+    public function reset(SessionInterface $session): Response
+    {
+        $session->remove('game');
+
+        return $this->redirectToRoute('game_start');
+    }
 }
