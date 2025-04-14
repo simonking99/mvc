@@ -21,4 +21,12 @@
     <h3>{{ winner }}</h3>
 {% endif %}
 </div>
+
+<div class="action-section">
+    {% if not game.isGameOver() %}
+        <a href="{{ path('game_deal') }}" class="btn btn-primary">Draw a Card</a>
+    {% endif %}
+</div>
+
 {% endblock %}
+
