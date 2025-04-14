@@ -33,6 +33,10 @@
     {% endif %}
 </div>
 
-
+<div class="restart-section">
+    <form method="post" action="{{ path('game_reset') }}">
+        <button type="submit" class="btn btn-danger">Restart Game</button>
+    </form>
+</div>
 {% endblock %}
 
