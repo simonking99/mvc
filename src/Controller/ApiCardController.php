@@ -96,4 +96,23 @@ class ApiCardController extends AbstractController
         ]);
     }
 
+    #[Route('/api/game', name: 'api_game')]
+    public function apiGame(SessionInterface $session): JsonResponse
+    {
+        $game = $session->get('game');
+
+        if (!$game) {
+            return $this->json(['error' => 'No game in session'], 404);
+        }
+
+        return $this->json([
+            'playerHand' => array_map(fn($card) => $card->__toString(), $game->getPlayerHand()->getCards()),
+            'dealerHand' => array_map(fn($card) => $card->__toString(), $game->getDealerHand()->getCards()),
+            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
+            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
+            'winner' => $game->getWinner()
+        ]);
+    }
+
+
 }
