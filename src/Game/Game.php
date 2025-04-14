@@ -25,6 +25,12 @@ class Game
     {
         $card = $this->deck->draw(1)[0];
         $this->playerHand->add($card);
+
+        // Hantera ess för spelaren
+        if ($card->getValue() === 'A') {
+            $this->handlePlayerAce();
+        }
+
         $this->checkGameStatus();
     }
 
@@ -32,7 +38,35 @@ class Game
     {
         $card = $this->deck->draw(1)[0];
         $this->dealerHand->add($card);
+
+        // Hantera ess för dealern
+        if ($card->getValue() === 'A') {
+            $this->handleDealerAce();
+        }
+
         $this->checkGameStatus();
+    }
+
+    private function handlePlayerAce(): void
+    {
+        // Låt spelaren välja om esset ska vara 1 eller 11
+        // Här kan du implementera en mekanism för att låta spelaren välja
+        // För enkelhetens skull antar vi att spelaren alltid väljer 11 om det inte gör att de går över 21
+        $playerScore = $this->calculateHandValue($this->playerHand);
+        if ($playerScore + 10 <= 21) {
+            $this->playerHand->adjustAceValue(11); // Anta att `adjustAceValue` är en metod i `CardHand`
+        }
+    }
+
+    private function handleDealerAce(): void
+    {
+        // Anpassa essets värde baserat på dealerns nuvarande poäng
+        $dealerScore = $this->calculateHandValue($this->dealerHand);
+        if ($dealerScore + 10 <= 21) {
+            $this->dealerHand->adjustAceValue(11); // Anta att `adjustAceValue` är en metod i `CardHand`
+        } else {
+            $this->dealerHand->adjustAceValue(1);
+        }
     }
 
     public function calculateHandValue(CardHand $hand): int
@@ -51,7 +85,8 @@ class Game
             }
         }
 
-        while ($aceCount > 0 && $value <= 1) {
+        // Hantera Aces (som kan vara både 1 eller 11)
+        while ($aceCount > 0 && $value + 10 <= 21) {
             $value += 10;
             $aceCount--;
         }
