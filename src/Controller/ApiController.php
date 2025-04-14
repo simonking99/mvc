@@ -61,6 +61,10 @@ class ApiController extends AbstractController
                 'path' => '/card/deck/draw/:number',
                 'description' => 'Return multiple drawn cards from the deck',
             ],
+            [
+                'path' => '/api/game',
+                'description' => 'Shows current game state',
+            ],
         ];
 
         return $this->json(
