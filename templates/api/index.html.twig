@@ -71,5 +71,15 @@
                 <a href="{{ path('api_quote') }}" class="api-button">Get quote</a>
             </div>
         </div>
+
+        <div class="api-endpoint">
+        <div class="api-description">
+            <strong>GET /api/game</strong><br>
+            Returns the current game state (hands, scores, winner) as JSON.
+        </div>
+        <div class="api-action">
+            <a href="{{ path('api_game') }}" class="api-button">Show game state</a>
+        </div>
     </div>
+
 {% endblock %}
