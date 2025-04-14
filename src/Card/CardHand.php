@@ -2,8 +2,12 @@
 
 namespace App\Card;
 
+/**
+ * @property Card[] $cards
+ */
 class CardHand
 {
+    /** @var Card[] */
     private array $cards = [];
 
     public function add(Card $card): void
@@ -11,6 +15,9 @@ class CardHand
         $this->cards[] = $card;
     }
 
+    /**
+     * @return Card[]
+     */
     public function getCards(): array
     {
         return $this->cards;

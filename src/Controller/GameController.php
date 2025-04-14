@@ -21,4 +21,17 @@ class GameController extends AbstractController
     {
         return $this->render('game/doc.html.twig');
     }
+
+    #[Route('/game/start', name: 'game_start')]
+    public function start(SessionInterface $session): Response
+    {
+        $deck = new DeckOfCards();
+        $deck->shuffle();
+
+        $session->set('deck', $deck);
+
+        return $this->render('game/start.html.twig', [
+            'deck' => $deck,
+        ]);
+    }
 }

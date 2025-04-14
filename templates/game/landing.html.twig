@@ -1,12 +1,29 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Game{% endblock %}
+{% block title %}Game 21 - Blackjack{% endblock %}
 
 {% block body %}
-<h1>Game</h1>
+<h1>Game 21 - Blackjack</h1>
 <div class="body-section">
-    <p>
-    <a href="{{ path('game_doc') }}" class="btn btn-primary">Go to Documentation</a>
-    </p>
+    <div class="game-description">
+        <p>
+            Welcome to the game of Blackjack!
+            The objective of the game is to draw cards and get as close as 
+            possible to a total of 21 points without going over. <br>In this game:
+        </p>
+        <ul>
+            <li>Each card has a point value, with number cards being worth their face value, face cards (Jack, Queen, King) being worth 10 points, and Ace being worth 1 point.</li>
+            <li>You will play against the dealer. The dealer will keep drawing cards until they have a total of 17 or more points.</li>
+            <li>If you have a higher total than the dealer without exceeding 21, you win!</li>
+            <li>If you go over 21 points, you lose automatically.</li>
+            <li>If both you and the dealer have the same score, the dealer wins.</li>
+        </ul>
+    </div>
+
+    <div class="game-actions">
+        <p>Click the button below to begin the game.</p>
+        <a href="{{ path('game_start') }}" class="btn btn-primary">Start Game</a>
+        <a href="{{ path('game_doc') }}" class="btn btn-secondary">Go to Documentation</a>
+    </div>
 </div>
 {% endblock %}

@@ -13,6 +13,7 @@ class CardGraphic extends Card
             '♣' => 'Clubs',
         ];
 
+        print_r($unicodeMap);
         return "[{$this->value}{$this->suit}]";
     }
 }

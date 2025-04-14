@@ -17,14 +17,15 @@ class CardController extends AbstractController
     }
 
     #[Route("/card/deck", name: "card_deck")]
-    public function card_deck(SessionInterface $session): Response
+    public function cardDeck(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
 
-        if (!$deck) {
-            $deck = new DeckOfCards(true);
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards();
             $session->set('deck', $deck);
         }
+
         $this->addFlash('message', 'The deck has been shown.');
 
         return $this->render('card/card_deck.html.twig', [
@@ -33,13 +34,14 @@ class CardController extends AbstractController
     }
 
     #[Route("/card/deck/shuffle", name: "card_shuffle")]
-    public function card_shuffle(SessionInterface $session): Response
+    public function cardShuffle(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
 
-        if (!$deck) {
-            $deck = new DeckOfCards(true);
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards();
         }
+
         $deck->shuffle();
         $session->set('deck', $deck);
 
@@ -51,18 +53,18 @@ class CardController extends AbstractController
     }
 
     #[Route("/card/deck/draw", name: "card_draw")]
-    public function card_draw(SessionInterface $session): Response
+    public function cardDraw(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
 
-        if (!$deck) {
-            $deck = new DeckOfCards(true);
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards();
         }
 
         $drawn = $deck->draw(1);
         $session->set('deck', $deck);
-        $this->addFlash('message', 'Card has been drawn.');
 
+        $this->addFlash('message', 'Card has been drawn.');
 
         return $this->render('card/card_draw.html.twig', [
             'drawn' => $drawn,
@@ -71,12 +73,12 @@ class CardController extends AbstractController
     }
 
     #[Route("/card/deck/draw/{number}", name: "card_draw_number", requirements: ["number" => "\d+"])]
-    public function card_draw_number(SessionInterface $session, int $number): Response
+    public function cardDrawNumber(SessionInterface $session, int $number): Response
     {
         $deck = $session->get('deck');
 
-        if (!$deck) {
-            $deck = new DeckOfCards(true);
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards();
         }
 
         $drawn = $deck->draw($number);
