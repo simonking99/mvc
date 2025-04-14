@@ -52,5 +52,36 @@ class GameController extends AbstractController
             'winner' => $winner,
             'game' => $game,
         ]);
-    }  
+    }
+
+    #[Route('/game/deal', name: 'game_deal')]
+    public function dealCard(SessionInterface $session): Response
+    {
+        $game = $session->get('game');
+        if (!$game) {
+            return $this->redirectToRoute('game_start');
+        }
+
+        $game->dealCardToPlayer();
+
+        if ($game->calculateHandValue($game->getPlayerHand()) == 21) {
+            return $this->redirectToRoute('game_stand');
+        }
+
+        $winner = '';
+        if ($game->isGameOver()) {
+            $winner = $game->getWinner();
+        }
+
+        $session->set('game', $game);
+
+        return $this->render('game/start.html.twig', [
+            'game' => $game,
+            'playerHand' => $game->getPlayerHand()->getCards(),
+            'dealerHand' => $game->getDealerHand()->getCards(),
+            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
+            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
+            'winner' => $winner,
+        ]);
+    }
 }
