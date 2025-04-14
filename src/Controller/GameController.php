@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Card\DeckOfCards;
+use App\Game\Game;
 
 class GameController extends AbstractController
 {
@@ -25,13 +25,32 @@ class GameController extends AbstractController
     #[Route('/game/start', name: 'game_start')]
     public function start(SessionInterface $session): Response
     {
-        $deck = new DeckOfCards();
-        $deck->shuffle();
+        $game = $session->get('game');
 
-        $session->set('deck', $deck);
+        if (!$game instanceof Game) {
+            $game = new Game();
+            $session->set('game', $game);
+        }
+
+        $game->dealCardToPlayer();
+
+        $playerScore = $game->calculateHandValue($game->getPlayerHand());
+        $dealerScore = $game->calculateHandValue($game->getDealerHand());
+
+        $winner = '';
+        if ($playerScore > 21) {
+            $winner = 'Dealer Wins';
+        } elseif ($playerScore == 21) {
+            $winner = 'Player Wins';
+        }
 
         return $this->render('game/start.html.twig', [
-            'deck' => $deck,
+            'playerHand' => $game->getPlayerHand()->getCards(),
+            'dealerHand' => $game->getDealerHand()->getCards(),
+            'playerScore' => $playerScore,
+            'dealerScore' => $dealerScore,
+            'winner' => $winner,
+            'game' => $game,
         ]);
-    }
+    }  
 }

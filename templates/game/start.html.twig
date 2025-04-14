@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game 21 - Start{% endblock %}
+
+{% block body %}
+<h1>Game 21 - Blackjack</h1>
+
+<div class="game-container">
+    <h2>Your Hand</h2>
+    <p>{{ playerHand | join(', ') }}</p>
+    <p>Score: {{ playerScore }}</p>
+
+
+<div>
+    <h2>Dealer's Hand</h2>
+    <p>{{ dealerHand | join(', ') }}</p>
+    <p>Score: {{ dealerScore }}</p>
+</div>
+
+{% if winner %}
+    <h3>{{ winner }}</h3>
+{% endif %}
+</div>
+{% endblock %}
