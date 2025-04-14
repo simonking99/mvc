@@ -364,3 +364,18 @@ h1 {
 .api-button:hover {
     background-color: #005fa3;
 }
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.aligned-text {
+    margin-bottom: 10px; /* Justera avståndet mellan texten och innehållet */
+    min-height: 30px; /* Sätt en minsta höjd för att hålla texten på samma nivå */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
