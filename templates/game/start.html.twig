@@ -23,10 +23,16 @@
 </div>
 
 <div class="action-section">
-    {% if not game.isGameOver() %}
-        <a href="{{ path('game_deal') }}" class="btn btn-primary">Draw a Card</a>
+    {% if winner %}
+        <h3 class="winner">{{ winner }}</h3>
+    {% else %}
+        {% if not game.isGameOver() %}
+            <a href="{{ path('game_deal') }}" class="btn btn-primary">Draw a Card</a>
+            <a href="{{ path('game_stand') }}" class="btn btn-secondary">Stand</a>
+        {% endif %}
     {% endif %}
 </div>
+
 
 {% endblock %}
 
