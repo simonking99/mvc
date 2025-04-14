@@ -91,4 +91,31 @@ class Game
     {
         return $this->winner;
     }
+
+    public function dealerTurn(): void
+    {
+        while ($this->calculateHandValue($this->dealerHand) < 17 && !$this->gameOver) {
+            $this->dealCardToDealer();
+        }
+
+        $this->checkWinner();
+    }
+
+    public function checkWinner(): void
+    {
+        $playerScore = $this->calculateHandValue($this->playerHand);
+        $dealerScore = $this->calculateHandValue($this->dealerHand);
+
+        if ($dealerScore > 21) {
+            $this->winner = "Player Wins";
+        } elseif ($playerScore > $dealerScore) {
+            $this->winner = "Player Wins";
+        } elseif ($playerScore < $dealerScore) {
+            $this->winner = "Dealer Wins";
+        } else {
+            $this->winner = "Draw";
+        }
+
+        $this->gameOver = true;
+    }
 }
