@@ -1,25 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Game 21 - Start{% endblock %}
+{% block title %}Game 21 - Blackjack{% endblock %}
 
 {% block body %}
-<h1>Game 21 - Blackjack</h1>
+<h1 class="game-title">Game 21 - Blackjack</h1>
 
 <div class="game-container">
-    <h2>Your Hand</h2>
-    <p>{{ playerHand | join(', ') }}</p>
-    <p>Score: {{ playerScore }}</p>
+    <div class="player-section">
+        <h2>Your Hand</h2>
+        <p class="cards">{{ playerHand | join(', ') }}</p>
+        <p class="score">Player Score: <strong>{{ playerScore }}</strong></p>
+    </div>
 
-
-<div>
-    <h2>Dealer's Hand</h2>
-    <p>{{ dealerHand | join(', ') }}</p>
-    <p>Score: {{ dealerScore }}</p>
-</div>
-
-{% if winner %}
-    <h3>{{ winner }}</h3>
-{% endif %}
+    <div class="dealer-section">
+        <h2>Dealer's Hand</h2>
+        <p class="cards">{{ dealerHand | join(', ') }}</p>
+        <p class="score">Dealer Score: <strong>{{ dealerScore }}</strong></p>
+    </div>
 </div>
 
 <div class="action-section">
@@ -39,4 +36,3 @@
     </form>
 </div>
 {% endblock %}
-
