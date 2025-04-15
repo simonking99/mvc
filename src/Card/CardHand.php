@@ -37,7 +37,7 @@ class CardHand
     {
         foreach ($this->cards as $card) {
             if ($card->getValue() === 'A') {
-                $card->setValue($value);
+                $card->setValue((string)$value);
                 break;
             }
         }

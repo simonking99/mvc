@@ -58,7 +58,8 @@ class GameController extends AbstractController
     public function dealCard(SessionInterface $session): Response
     {
         $game = $session->get('game');
-        if (!$game) {
+
+        if (!$game instanceof Game) {
             return $this->redirectToRoute('game_start');
         }
 
@@ -89,7 +90,8 @@ class GameController extends AbstractController
     public function stand(SessionInterface $session): Response
     {
         $game = $session->get('game');
-        if (!$game) {
+
+        if (!$game instanceof Game) {
             return $this->redirectToRoute('game_start');
         }
 

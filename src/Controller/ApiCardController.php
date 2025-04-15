@@ -101,8 +101,8 @@ class ApiCardController extends AbstractController
     {
         $game = $session->get('game');
 
-        if (!$game) {
-            return $this->json(['error' => 'No game in session'], 404);
+        if (!$game instanceof \App\Game\Game) {
+            return $this->json(['error' => 'No game in session']);
         }
 
         return $this->json([
@@ -113,6 +113,4 @@ class ApiCardController extends AbstractController
             'winner' => $game->getWinner()
         ]);
     }
-
-
 }
