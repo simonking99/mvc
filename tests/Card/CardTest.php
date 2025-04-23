@@ -26,4 +26,11 @@ class CardTest extends TestCase
 
         $this->assertEquals("9", $card->getValue());
     }
+
+    // Test to convert the card to a string
+    public function testToString()
+    {
+        $card = new Card("♦", "Q");
+        $this->assertEquals("Q♦", (string)$card);
+    }
 }
