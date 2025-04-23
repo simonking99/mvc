@@ -15,4 +15,12 @@ class GameTest extends TestCase
         $game = new Game();
         $this->assertInstanceOf(Game::class, $game);
     }
+
+    // Test initial hands are empty
+    public function testInitialHandsAreEmpty()
+    {
+        $game = new Game();
+        $this->assertCount(0, $game->getPlayerHand()->getCards());
+        $this->assertCount(0, $game->getDealerHand()->getCards());
+    }
 }
