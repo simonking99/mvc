@@ -17,4 +17,13 @@ class CardTest extends TestCase
         $this->assertEquals("♠", $card->getSuit());
         $this->assertEquals("A", $card->getValue());
     }
+
+    // Test to set and get the suit of a card
+    public function testSetValue()
+    {
+        $card = new Card("♣", "2");
+        $card->setValue("9");
+
+        $this->assertEquals("9", $card->getValue());
+    }
 }
