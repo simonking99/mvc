@@ -22,4 +22,17 @@ class CardHandTest extends TestCase
 
         $this->assertEquals(2, $hand->getNumberOfCards());
     }
+
+    // Test to get all cards from the deck
+    public function testGetCards()
+    {
+        $hand = new CardHand();
+        $card = new Card("♣", "7");
+        $hand->add($card);
+
+        $cards = $hand->getCards();
+        $this->assertIsArray($cards);
+        $this->assertContainsOnlyInstancesOf(Card::class, $cards);
+        $this->assertSame($card, $cards[0]);
+    }
 }
