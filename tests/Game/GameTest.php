@@ -59,4 +59,15 @@ class GameTest extends TestCase
         $score = $game->calculateHandValue($game->getDealerHand());
         $this->assertEquals(21, $score);
     }
+
+    // Test that ace is counted as 1 if handvalue is 20
+    public function testDealerAceAsOne()
+    {
+        $game = new Game();
+        $game->getDealerHand()->add(new Card("♠", "10"));
+        $game->getDealerHand()->add(new Card("♦", "10"));
+        $game->getDealerHand()->add(new Card("♣", "A"));
+        $score = $game->calculateHandValue($game->getDealerHand());
+        $this->assertEquals(21, $score);
+    }
 }
