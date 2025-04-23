@@ -70,4 +70,16 @@ class GameTest extends TestCase
         $score = $game->calculateHandValue($game->getDealerHand());
         $this->assertEquals(21, $score);
     }
+
+    // Test where player bust is detected
+    public function testCheckGameStatusPlayerBust()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "10"));
+        $game->getPlayerHand()->add(new Card("♦", "10"));
+        $game->getPlayerHand()->add(new Card("♣", "5"));
+        $game->checkGameStatus();
+        $this->assertTrue($game->isGameOver());
+        $this->assertEquals("Dealer Wins", $game->getWinner());
+    }
 }
