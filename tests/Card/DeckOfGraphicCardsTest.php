@@ -8,7 +8,7 @@ use App\Card\DeckOfGraphicCards;
 class DeckOfGraphicCardsTest extends TestCase
 {
     // Construct object and verify that it is an instance of DeckOfGraphicCards.
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $obj = new DeckOfGraphicCards();
         $this->assertInstanceOf(DeckOfGraphicCards::class, $obj);
