@@ -13,4 +13,14 @@ class CardGraphicTest extends TestCase
         $card = new CardGraphic("♥", "A");
         $this->assertInstanceOf(CardGraphic::class, $card);
     }
+
+    // Test to set and get the suit of a card graphic
+    public function testGetUnicode()
+    {
+        $card = new CardGraphic("♠", "K");
+        $unicode = $card->getUnicode();
+
+        $this->assertIsString($unicode);
+        $this->assertEquals("[K♠]", $unicode);
+    }
 }
