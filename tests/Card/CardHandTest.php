@@ -35,4 +35,14 @@ class CardHandTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Card::class, $cards);
         $this->assertSame($card, $cards[0]);
     }
+
+    // Test to convert the hand to a string
+    public function testToString()
+    {
+        $hand = new CardHand();
+        $hand->add(new Card("♥", "K"));
+        $result = (string)$hand;
+        $this->assertIsString($result);
+        $this->assertStringContainsString("K♥", $result);
+    }
 }
