@@ -17,4 +17,15 @@ class DeckOfCardsTest extends TestCase
         $deck = new DeckOfCards();
         $this->assertEquals(52, $deck->count());
     }
+
+    // Test draw cards
+    public function testDrawCards()
+    {
+        $deck = new DeckOfCards();
+        $drawn = $deck->draw(3);
+
+        $this->assertCount(3, $drawn);
+        $this->assertContainsOnlyInstancesOf(Card::class, $drawn);
+        $this->assertEquals(49, $deck->count());
+    }
 }
