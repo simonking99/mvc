@@ -82,4 +82,15 @@ class GameTest extends TestCase
         $this->assertTrue($game->isGameOver());
         $this->assertEquals("Dealer Wins", $game->getWinner());
     }
+
+    // Test where player wins with 21
+    public function testCheckGameStatusPlayer21()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "10"));
+        $game->getPlayerHand()->add(new Card("♦", "A"));
+        $game->checkGameStatus();
+        $this->assertTrue($game->isGameOver());
+        $this->assertEquals("Player Wins", $game->getWinner());
+    }
 }
