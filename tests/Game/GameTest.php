@@ -146,4 +146,16 @@ class GameTest extends TestCase
 
         $this->assertEquals("Dealer Wins", $game->getWinner());
     }
+
+    // Test checking winner when it's a draw
+    public function testCheckWinnerDraw()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "10"));
+        $game->getDealerHand()->add(new Card("♦", "10"));
+
+        $game->checkWinner();
+
+        $this->assertEquals("Draw", $game->getWinner());
+    }
 }
