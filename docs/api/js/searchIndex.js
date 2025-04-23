@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\App\\Card\\Card",
             "name": "Card",
-            "summary": "A\u0020playing\u0020card\u0020with\u0020a\u0020suit\u0020and\u0020value.",
+            "summary": "A\u0020card\u0020with\u0020a\u0020suit\u0020and\u0020value.",
             "url": "classes/App-Card-Card.html"
         },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003A__construct\u0028\u0029",
@@ -43,7 +43,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\CardGraphic",
             "name": "CardGraphic",
-            "summary": "A\u0020playing\u0020card\u0020with\u0020a\u0020suit\u0020and\u0020value.",
+            "summary": "A\u0020card\u0020with\u0020a\u0020suit\u0020and\u0020value.",
             "url": "classes/App-Card-CardGraphic.html"
         },                {
             "fqsen": "\\App\\Card\\CardGraphic\u003A\u003AgetUnicode\u0028\u0029",
@@ -325,16 +325,6 @@ Search.appendIndex(
             "name": "dealCardToDealer",
             "summary": "",
             "url": "classes/App-Game-Game.html#method_dealCardToDealer"
-        },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AhandlePlayerAce\u0028\u0029",
-            "name": "handlePlayerAce",
-            "summary": "",
-            "url": "classes/App-Game-Game.html#method_handlePlayerAce"
-        },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AhandleDealerAce\u0028\u0029",
-            "name": "handleDealerAce",
-            "summary": "",
-            "url": "classes/App-Game-Game.html#method_handleDealerAce"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AcalculateHandValue\u0028\u0029",
             "name": "calculateHandValue",
