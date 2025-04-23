@@ -26,11 +26,6 @@ class Game
     {
         $card = $this->deck->draw(1)[0];
         $this->playerHand->add($card);
-
-        if ($card->getValue() === 'A') {
-            $this->handlePlayerAce();
-        }
-
         $this->checkGameStatus();
     }
 
@@ -38,33 +33,8 @@ class Game
     {
         $card = $this->deck->draw(1)[0];
         $this->dealerHand->add($card);
-
-        if ($card->getValue() === 'A') {
-            $this->handleDealerAce();
-        }
-
         $this->checkGameStatus();
     }
-
-    private function handlePlayerAce(): void
-    {
-        $playerScore = $this->calculateHandValue($this->playerHand);
-        if ($playerScore + 10 <= 21) {
-            $this->playerHand->adjustAceValue(11);
-        }
-    }
-
-    private function handleDealerAce(): void
-    {
-        $dealerScore = $this->calculateHandValue($this->dealerHand);
-        if ($dealerScore + 10 <= 21) {
-            $this->dealerHand->adjustAceValue(11);
-            return;
-        }
-
-        $this->dealerHand->adjustAceValue(1);
-    }
-
 
     public function calculateHandValue(CardHand $hand): int
     {
