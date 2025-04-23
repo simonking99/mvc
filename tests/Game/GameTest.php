@@ -10,14 +10,14 @@ class GameTest extends TestCase
 {
 
     // Test to create a game object
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $game = new Game();
         $this->assertInstanceOf(Game::class, $game);
     }
 
     // Test initial hands are empty
-    public function testInitialHandsAreEmpty()
+    public function testInitialHandsAreEmpty(): void
     {
         $game = new Game();
         $this->assertCount(0, $game->getPlayerHand()->getCards());
@@ -25,7 +25,7 @@ class GameTest extends TestCase
     }
 
     // Test deal cards to player
-    public function testDealCardToPlayer()
+    public function testDealCardToPlayer(): void
     {
         $game = new Game();
         $game->dealCardToPlayer();
@@ -33,7 +33,7 @@ class GameTest extends TestCase
     }
 
     // Test deal cards to dealer
-    public function testDealCardToDealer()
+    public function testDealCardToDealer(): void
     {
         $game = new Game();
         $game->dealCardToDealer();
@@ -41,7 +41,7 @@ class GameTest extends TestCase
     }
 
     // Test that ace is counted as 11 if handvalue is 5
-    public function testPlayerAceHandledCorrectly()
+    public function testPlayerAceHandledCorrectly(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "5"));
@@ -51,7 +51,7 @@ class GameTest extends TestCase
     }
 
     // Test that ace is counted as 11 if handvalue is 10
-    public function testDealerAceHandledCorrectly()
+    public function testDealerAceHandledCorrectly(): void
     {
         $game = new Game();
         $game->getDealerHand()->add(new Card("♠", "10"));
@@ -61,7 +61,7 @@ class GameTest extends TestCase
     }
 
     // Test that ace is counted as 1 if handvalue is 20
-    public function testDealerAceAsOne()
+    public function testDealerAceAsOne(): void
     {
         $game = new Game();
         $game->getDealerHand()->add(new Card("♠", "10"));
@@ -72,7 +72,7 @@ class GameTest extends TestCase
     }
 
     // Test where player bust is detected
-    public function testCheckGameStatusPlayerBust()
+    public function testCheckGameStatusPlayerBust(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "10"));
@@ -84,7 +84,7 @@ class GameTest extends TestCase
     }
 
     // Test where player wins with 21
-    public function testCheckGameStatusPlayer21()
+    public function testCheckGameStatusPlayer21(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "10"));
@@ -95,7 +95,7 @@ class GameTest extends TestCase
     }
 
     // Test where dealer bust is detected
-    public function testCheckWinnerDealerBusts()
+    public function testCheckWinnerDealerBusts(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "5"));
@@ -108,7 +108,7 @@ class GameTest extends TestCase
     }
 
     // Test when dealer's turn ends the game
-    public function testDealerTurnEndsGame()
+    public function testDealerTurnEndsGame(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♣", "2"));
@@ -118,7 +118,7 @@ class GameTest extends TestCase
     }
 
     // Test checking winner when player has higher score
-    public function testCheckWinnerPlayerWins()
+    public function testCheckWinnerPlayerWins(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "10"));
@@ -133,7 +133,7 @@ class GameTest extends TestCase
     }
 
     // Test checking winner when dealer has higher score
-    public function testCheckWinnerDealerWins()
+    public function testCheckWinnerDealerWins(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "5"));
@@ -148,7 +148,7 @@ class GameTest extends TestCase
     }
 
     // Test checking winner when it's a draw
-    public function testCheckWinnerDraw()
+    public function testCheckWinnerDraw(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "10"));
