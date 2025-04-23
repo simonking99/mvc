@@ -23,4 +23,12 @@ class GameTest extends TestCase
         $this->assertCount(0, $game->getPlayerHand()->getCards());
         $this->assertCount(0, $game->getDealerHand()->getCards());
     }
+
+    // Test deal cards to player
+    public function testDealCardToPlayer()
+    {
+        $game = new Game();
+        $game->dealCardToPlayer();
+        $this->assertCount(1, $game->getPlayerHand()->getCards());
+    }
 }
