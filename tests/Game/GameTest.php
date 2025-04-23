@@ -93,4 +93,17 @@ class GameTest extends TestCase
         $this->assertTrue($game->isGameOver());
         $this->assertEquals("Player Wins", $game->getWinner());
     }
+
+    // Test where dealer bust is detected
+    public function testCheckWinnerDealerBusts()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "5"));
+        $game->getDealerHand()->add(new Card("♣", "10"));
+        $game->getDealerHand()->add(new Card("♦", "10"));
+        $game->getDealerHand()->add(new Card("♥", "5"));
+        $game->checkWinner();
+        $this->assertEquals("Player Wins", $game->getWinner());
+        $this->assertTrue($game->isGameOver());
+    }
 }
