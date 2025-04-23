@@ -106,4 +106,14 @@ class GameTest extends TestCase
         $this->assertEquals("Player Wins", $game->getWinner());
         $this->assertTrue($game->isGameOver());
     }
+
+    // Test when dealer's turn ends the game
+    public function testDealerTurnEndsGame()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♣", "2"));
+        $game->dealerTurn();
+        $this->assertTrue($game->isGameOver());
+        $this->assertNotEmpty($game->getWinner());
+    }
 }
