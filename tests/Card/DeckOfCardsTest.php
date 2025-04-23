@@ -39,4 +39,17 @@ class DeckOfCardsTest extends TestCase
         $this->assertCount(52, $cards);
         $this->assertContainsOnlyInstancesOf(Card::class, $cards);
     }
+
+    // Test shuffling the deck
+    public function testShuffle()
+    {
+        $deck1 = new DeckOfCards();
+        $deck2 = new DeckOfCards();
+
+        $deck2->shuffle();
+
+        $this->assertEquals(52, $deck1->count());
+        $this->assertEquals(52, $deck2->count());
+        $this->assertNotEquals($deck1->getCards(), $deck2->getCards()); // sannolikt olika
+    }
 }
