@@ -45,4 +45,17 @@ class CardHandTest extends TestCase
         $this->assertIsString($result);
         $this->assertStringContainsString("K♥", $result);
     }
+
+    // Test to adjust the value of an Ace
+    public function testAdjustAceValue()
+    {
+        $hand = new CardHand();
+        $hand->add(new Card("♣", "3"));
+        $hand->add(new Card("♠", "A"));
+        $hand->adjustAceValue(11);
+
+        $cards = $hand->getCards();
+        $this->assertEquals("3", $cards[0]->getValue());
+        $this->assertEquals("11", $cards[1]->getValue());
+    }
 }
