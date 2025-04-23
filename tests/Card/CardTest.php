@@ -9,7 +9,7 @@ use App\Card\Card;
 class CardTest extends TestCase
 {   
     // Test to create a card and access its properties
-    public function testCreateAndAccess()
+    public function testCreateAndAccess(): void
     {
         $card = new Card("♠", "A");
 
@@ -19,7 +19,7 @@ class CardTest extends TestCase
     }
 
     // Test to set and get the suit of a card
-    public function testSetValue()
+    public function testSetValue(): void
     {
         $card = new Card("♣", "2");
         $card->setValue("9");
@@ -28,7 +28,7 @@ class CardTest extends TestCase
     }
 
     // Test to convert the card to a string
-    public function testToString()
+    public function testToString(): void
     {
         $card = new Card("♦", "Q");
         $this->assertEquals("Q♦", (string)$card);
