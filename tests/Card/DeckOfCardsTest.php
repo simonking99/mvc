@@ -12,14 +12,14 @@ use App\Card\Card;
 class DeckOfCardsTest extends TestCase
 {
     // Test to create a deck of cards with 52 cards
-    public function testInitialCardCount()
+    public function testInitialCardCount(): void
     {
         $deck = new DeckOfCards();
         $this->assertEquals(52, $deck->count());
     }
 
     // Test draw cards
-    public function testDrawCards()
+    public function testDrawCards(): void
     {
         $deck = new DeckOfCards();
         $drawn = $deck->draw(3);
@@ -30,18 +30,17 @@ class DeckOfCardsTest extends TestCase
     }
 
     // Test get cards
-    public function testGetCards()
+    public function testGetCards(): void
     {
         $deck = new DeckOfCards();
         $cards = $deck->getCards();
 
-        $this->assertIsArray($cards);
         $this->assertCount(52, $cards);
         $this->assertContainsOnlyInstancesOf(Card::class, $cards);
     }
 
     // Test shuffling the deck
-    public function testShuffle()
+    public function testShuffle(): void
     {
         $deck1 = new DeckOfCards();
         $deck2 = new DeckOfCards();
