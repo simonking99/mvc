@@ -131,4 +131,19 @@ class GameTest extends TestCase
 
         $this->assertEquals("Player Wins", $game->getWinner());
     }
+
+    // Test checking winner when dealer has higher score
+    public function testCheckWinnerDealerWins()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "5"));
+        $game->getPlayerHand()->add(new Card("♦", "6"));
+
+        $game->getDealerHand()->add(new Card("♠", "10"));
+        $game->getDealerHand()->add(new Card("♦", "10"));
+
+        $game->checkWinner();
+
+        $this->assertEquals("Dealer Wins", $game->getWinner());
+    }
 }
