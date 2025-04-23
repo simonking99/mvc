@@ -9,7 +9,7 @@ use App\Card\CardHand;
 class CardHandTest extends TestCase
 {
     //Test to add and count cards
-    public function testAddAndCountCards()
+    public function testAddAndCountCards(): void
     {
         $hand = new CardHand();
         $this->assertEquals(0, $hand->getNumberOfCards());
@@ -24,30 +24,28 @@ class CardHandTest extends TestCase
     }
 
     // Test to get all cards from the deck
-    public function testGetCards()
+    public function testGetCards(): void
     {
         $hand = new CardHand();
         $card = new Card("♣", "7");
         $hand->add($card);
 
         $cards = $hand->getCards();
-        $this->assertIsArray($cards);
         $this->assertContainsOnlyInstancesOf(Card::class, $cards);
         $this->assertSame($card, $cards[0]);
     }
 
     // Test to convert the hand to a string
-    public function testToString()
+    public function testToString(): void
     {
         $hand = new CardHand();
         $hand->add(new Card("♥", "K"));
         $result = (string)$hand;
-        $this->assertIsString($result);
         $this->assertStringContainsString("K♥", $result);
     }
 
     // Test to adjust the value of an Ace
-    public function testAdjustAceValue()
+    public function testAdjustAceValue(): void
     {
         $hand = new CardHand();
         $hand->add(new Card("♣", "3"));
