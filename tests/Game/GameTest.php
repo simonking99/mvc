@@ -116,4 +116,19 @@ class GameTest extends TestCase
         $this->assertTrue($game->isGameOver());
         $this->assertNotEmpty($game->getWinner());
     }
+
+    // Test checking winner when player has higher score
+    public function testCheckWinnerPlayerWins()
+    {
+        $game = new Game();
+        $game->getPlayerHand()->add(new Card("♠", "10"));
+        $game->getPlayerHand()->add(new Card("♦", "9"));
+
+        $game->getDealerHand()->add(new Card("♠", "5"));
+        $game->getDealerHand()->add(new Card("♦", "5"));
+
+        $game->checkWinner();
+
+        $this->assertEquals("Player Wins", $game->getWinner());
+    }
 }
