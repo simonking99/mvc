@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Book;
 use App\Repository\ProductRepository;
+use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class LibraryController extends AbstractController
@@ -22,9 +23,12 @@ final class LibraryController extends AbstractController
         $entityManager = $doctrine->getManager();
     
         $books = [
-            ['title' => '1984', 'isbn' => '9780451524935', 'author' => 'George Orwell', 'image' => '1984.jpg'],
-            ['title' => 'Brave New World', 'isbn' => '9780060850524', 'author' => 'Aldous Huxley', 'image' => 'brave_new_world.jpg'],
-            ['title' => 'Fahrenheit 451', 'isbn' => '9781451673319', 'author' => 'Ray Bradbury', 'image' => 'fahrenheit_451.jpg'],
+            ['title' => 'Harry Potter and the Philosopher Stone', 'isbn' => '9781408855652', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/81q77Q39nEL._SL1500_.jpg'],
+            ['title' => 'Harry Potter and the Chamber of Secrets', 'isbn' => '1408855666', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/818umIdoruL._SL1500_.jpg'],
+            ['title' => 'Harry Potter and the Prisoner of Azkaban', 'isbn' => '1408855674', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/81NQA1BDlnL._SL1500_.jpg'],
+
+
+
         ];
     
         foreach ($books as $data) {
@@ -40,6 +44,16 @@ final class LibraryController extends AbstractController
     
         return $this->render('library/init.html.twig', [
             'bookCount' => count($books),
+        ]);
+    }  
+    
+    #[Route('/library/books', name: 'library_books', methods: ['GET'])]
+    public function showAllBooks(BookRepository $bookRepository): Response
+    {
+        $books = $bookRepository->findAll();
+    
+        return $this->render('library/books.html.twig', [
+            'books' => $books
         ]);
     }    
 }
