@@ -6,7 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Book;
+use App\Form\BookType;
+
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -56,4 +59,24 @@ final class LibraryController extends AbstractController
             'books' => $books
         ]);
     }    
+
+    #[Route('/library/create', name: 'library_create', methods: ['GET', 'POST'])]
+    public function createBook(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $book = new Book();
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('library_books');
+        }
+
+        return $this->render('library/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
