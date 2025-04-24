@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Library{% endblock %}
+
+{% block body %}
+<h1 class="display-4 mb-4">Library</h1>
+
+<div class="about-columns">
+    <div class="about-text">
+        <p class="lead"></p>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered rounded shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.isbn }}</td>
+                            <td>
+                                {% if book.image starts with 'http' %}
+                                    <img src="{{ book.image }}" alt="{{ book.title }}" width="40">
+                                {% else %}
+                                    <img src="{{ asset('images/' ~ book.image) }}" alt="{{ book.title }}" width="40">
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">Inga böcker hittades i biblioteket.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
