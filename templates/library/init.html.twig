@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Initiering Klar{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Bibliotek initierat</h1>
+        <p>{{ bookCount }} böcker har lagts till i databasen.</p>
+
+        <a href="{{ path('library_index') }}" class="btn btn-primary mt-3">Tillbaka till biblioteket</a>
+    </div>
+{% endblock %}
