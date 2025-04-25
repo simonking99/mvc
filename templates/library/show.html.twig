@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+<h1 class="display-4 mb-4 text-center">{{ book.title }}</h1>
+
+<div class="about-columns">
+    <div class="about-text text-center"> {# Centrera innehåll här #}
+
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+        {% if book.image starts with 'http' %}
+            <img src="{{ book.image }}" alt="{{ book.title }}" class="img-fluid rounded shadow-sm mt-3" width="200">
+        {% else %}
+            <img src="{{ asset('images/' ~ book.image) }}" alt="{{ book.title }}" class="img-fluid rounded shadow-sm mt-3" width="200">
+        {% endif %}
+
+        <br><br>
+        <a href="{{ path('library_books') }}" class="btn btn-secondary mt-3">← Back to library</a>
+
+    </div>
+</div>
+{% endblock %}
