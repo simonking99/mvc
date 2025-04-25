@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Book;
 use App\Form\BookType;
-
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\BookRepository;
@@ -86,6 +85,29 @@ final class LibraryController extends AbstractController
         $book = $bookRepository->find($id);
         return $this->render('library/show.html.twig', [
             'book' => $book,
+        ]);
+    }
+
+    #[Route('/library/book/{id}/edit', name: 'library_edit', methods: ['GET', 'POST'])]
+    public function editBook(Request $request, ManagerRegistry $doctrine, BookRepository $bookRepository, int $id): Response
+    {
+        $book = $bookRepository->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException('Boken hittades inte.');
+        }
+
+        $form = $this->createForm(\App\Form\BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('library_show', ['id' => $book->getId()]);
+        }
+
+        return $this->render('library/edit.html.twig', [
+            'form' => $form->createView(),
+            'book' => $book
         ]);
     }
 }
