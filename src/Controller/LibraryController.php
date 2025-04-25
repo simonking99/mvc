@@ -15,7 +15,8 @@ use Doctrine\Persistence\ManagerRegistry;
 final class LibraryController extends AbstractController
 {
     #[Route('/library', name: 'library_index')]
-    public function index(): Response {
+    public function index(): Response
+    {
         return $this->render('library/index.html.twig');
     }
 
@@ -23,7 +24,7 @@ final class LibraryController extends AbstractController
     public function initLibrary(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
-    
+
         $books = [
             ['title' => 'Harry Potter and the Philosopher Stone', 'isbn' => '9781408855652', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/81q77Q39nEL._SL1500_.jpg'],
             ['title' => 'Harry Potter and the Chamber of Secrets', 'isbn' => '1408855666', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/818umIdoruL._SL1500_.jpg'],
@@ -32,7 +33,7 @@ final class LibraryController extends AbstractController
 
 
         ];
-    
+
         foreach ($books as $data) {
             $book = new Book();
             $book->setTitle($data['title']);
@@ -41,23 +42,23 @@ final class LibraryController extends AbstractController
             $book->setImage($data['image']);
             $entityManager->persist($book);
         }
-    
+
         $entityManager->flush();
-    
+
         return $this->render('library/init.html.twig', [
             'bookCount' => count($books),
         ]);
-    }  
-    
+    }
+
     #[Route('/library/books', name: 'library_books', methods: ['GET'])]
     public function showAllBooks(BookRepository $bookRepository): Response
     {
         $books = $bookRepository->findAll();
-    
+
         return $this->render('library/books.html.twig', [
             'books' => $books
         ]);
-    }    
+    }
 
     #[Route('/library/create', name: 'library_create', methods: ['GET', 'POST'])]
     public function createBook(Request $request, ManagerRegistry $doctrine): Response
@@ -93,6 +94,10 @@ final class LibraryController extends AbstractController
     {
         $book = $bookRepository->find($id);
 
+        if (!$book) {
+            throw $this->createNotFoundException("Boken med ID $id kunde inte hittas.");
+        }
+
         $form = $this->createForm(\App\Form\BookType::class, $book);
         $form->handleRequest($request);
 
@@ -112,10 +117,15 @@ final class LibraryController extends AbstractController
     {
         $book = $bookRepository->find($id);
 
+        if (!$book) {
+            throw $this->createNotFoundException('Boken hittades inte.');
+        }
+
         $entityManager = $doctrine->getManager();
         $entityManager->remove($book);
         $entityManager->flush();
 
         return $this->redirectToRoute('library_books');
     }
+
 }
