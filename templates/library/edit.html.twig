@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update {{ book.title }}{% endblock %}
+
+{% block body %}
+<h1 class="display-4 mb-4 text-center">Update {{ book.title }}</h1>
+
+<div class="form-wrapper mx-auto">
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.author) }}
+        {{ form_row(form.isbn) }}
+        {{ form_row(form.image) }}
+
+        <button type="submit" class="btn btn-success mt-3">Save changes</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('library_show', { id: book.id }) }}" class="btn btn-outline-secondary mt-3">Back</a>
+</div>
+{% endblock %}
