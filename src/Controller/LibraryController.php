@@ -93,10 +93,6 @@ final class LibraryController extends AbstractController
     {
         $book = $bookRepository->find($id);
 
-        if (!$book) {
-            throw $this->createNotFoundException('Boken hittades inte.');
-        }
-
         $form = $this->createForm(\App\Form\BookType::class, $book);
         $form->handleRequest($request);
 
@@ -109,5 +105,17 @@ final class LibraryController extends AbstractController
             'form' => $form->createView(),
             'book' => $book
         ]);
+    }
+
+    #[Route('/library/book/{id}/delete', name: 'library_delete', methods: ['POST'])]
+    public function deleteBook(Request $request, BookRepository $bookRepository, ManagerRegistry $doctrine, int $id): Response
+    {
+        $book = $bookRepository->find($id);
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('library_books');
     }
 }
