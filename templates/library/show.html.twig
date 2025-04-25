@@ -18,7 +18,8 @@
         {% endif %}
 
         <br><br>
-        <a href="{{ path('library_books') }}" class="btn btn-secondary mt-3">← Back to library</a>
+        <a href="{{ path('library_books') }}" class="btn btn-secondary mt-3">Back to library</a>
+        <a href="{{ path('library_edit', { id: book.id }) }}" class="btn btn-warning mt-3">Update book</a>
 
     </div>
 </div>
