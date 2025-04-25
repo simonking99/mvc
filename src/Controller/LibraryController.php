@@ -79,4 +79,13 @@ final class LibraryController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/library/book/{id}', name: 'library_show', methods: ['GET'])]
+    public function showBook(BookRepository $bookRepository, int $id): Response
+    {
+        $book = $bookRepository->find($id);
+        return $this->render('library/show.html.twig', [
+            'book' => $book,
+        ]);
+    }
 }
