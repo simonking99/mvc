@@ -52,6 +52,9 @@
         Stora, röda cirklar indikerar kod som både är komplex och svår att underhålla vilket tyder på att dessa bör granskas och förbättras.
         Efter en titt inuti Game klassen så kan man ta slutsatsen att klassen är för stor och gör för mycket.
         Klassen har för många beroenden och blir svår att underhålla. En förbättringsmöjlighet kan var att dela upp klasserna i flera mindre.
+        Game har Cyclomatic complexity 13 och maintanibility index 33.94, 
+        LibraryController har Cyclomatic complexity 8 maintanibility index 37.33,
+        och GameController har Cyclomatic complexity 8 och maintanibility index 39.61.
         </p>
 
         <h1>Scrutinizer</h1>
@@ -100,13 +103,35 @@
         <li>Ta bort eller ersätta ogiltiga typreferenser i LibraryController.php</li>
         <li>Rensa bort oanvända parametrar</li>
         <li>Felsöka och rätta beroendeproblem i php-cs-fixer-konfigurationen</li>
-        <li>Utöka testtäckningen, som ligger på 23 %</li>
         </ul>
         <p>
         Dessa åtgärder är direkt kopplade till flera av 6C-principerna, framför allt
         Codestyle, Complexity, Coverage och CRAP.
         Jag räknar med att åtgärderna både höjer kvaliteten och förenklar framtida underhåll.
         </p>
+
+        <img src="{{ asset('img/metrics_1.png') }}" alt="Metrics" class="simon">
+        <p>
+        Efter förbättringarna visar PhpMetrics-rapporten tydligt hur kodkvaliteten har ökat. 
+        Klassen Game minskade sin komplexitet från 13 till 8 och fick ett högre
+        maintainability index, från 33.94 till 39.2. LibraryController behöll
+        komplexitet 8 men förbättrades från 37.33 till 59.73 i maintainability index. 
+        GameController gick från 39.61 till 61.04. Dessa förändringar visar att refaktorisering 
+        och bättre struktur gör koden både enklare att förstå och mer hållbar över tid.
+        </p>
+
+        <p>
+        Även Scrutinizer bekräftar att kodens kvalitet fortsatt är mycket hög. 
+        Efter att ha genomfört förbättringarna låg
+        kodkvalitetspoängen kvar på 10.00 (Very Good), 
+        vilket visar att strukturella ändringar inte försämrat kodstandarden.
+        Testtäckningen ligger däremot fortfarande på 23 %,
+        eftersom mitt fokus i detta steg låg på att förbättra kodstruktur och minska
+        komplexitet snarare än att lägga till nya tester. Att utöka testtäckningen
+        är ett naturligt nästa steg för att ytterligare stärka kodens tillförlitlighet.
+        </p>
+
+
 
      </p>
 
