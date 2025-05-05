@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Book;
 use App\Form\BookType;
-use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -113,7 +112,7 @@ final class LibraryController extends AbstractController
     }
 
     #[Route('/library/book/{id}/delete', name: 'library_delete', methods: ['POST'])]
-    public function deleteBook(Request $request, BookRepository $bookRepository, ManagerRegistry $doctrine, int $id): Response
+    public function deleteBook(BookRepository $bookRepository, ManagerRegistry $doctrine, int $id): Response
     {
         $book = $bookRepository->find($id);
 

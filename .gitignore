@@ -36,3 +36,7 @@ yarn-error.log
 .php-cs-fixer.cache
 /tools/phpdoc/
 /docs/
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
