@@ -3,13 +3,47 @@
 {% block title %}Metrics{% endblock %}
 
 {% block body %}
-<h1>Metrics</h1>
+<h1 class="mb-4">Metrics</h1>
 
 <div class="about-columns">
     <div class="about-text">
+            <h1>Introduktion</h1>
         <p>
-
+            God kodkvalitet är viktigt för att koden ska vara lätt att 
+            underhålla och förstå över tid, även om det inte alltid krävs för 
+            att få en webbplats att fungera. För att arbeta mot hög kodkvalitet 
+            kan vi använda oss av <strong>"6C"</strong>:
         </p>
+
+        <div class="quality-section">
+            <p>
+                Codestyle: Handlar om att följa en enhetlig kodstil, vilket gör koden lättare att läsa och förstå.
+            </p>
+            <p>
+                Coverage: Anger hur stor del av koden som är testad med enhetstester. 
+                Hög täckning minskar risken för dolda buggar och oväntade fel.
+            </p>
+
+            <p>
+                Complexity: Mäter hur komplex koden är, till exempel genom att räkna antalet beslutspunkter som if-satser.
+                Ju fler beslut, desto mer komplicerad och svårunderhållen blir koden.
+            </p>
+
+            <p>
+                Cohesion: Visar hur väl metoder i en klass hänger ihop. 
+                Hög kohesion innebär att en klass har ett tydligt syfte och är lättare att underhålla.
+            </p>
+
+            <p>
+                Coupling: Mäter hur beroende olika klasser eller moduler är av varandra. 
+                Låg koppling gör det enklare att ändra och utveckla koden utan att påverka andra delar av systemet.
+            </p>
+
+            <p>
+                CRAP: Kombinerar komplexitet och testtäckning för att hitta riskabla kodområden. 
+                Ett högt CRAP-värde betyder att en kodbit både är svår och dåligt testad, vilket ökar risken för fel.
+            </p>
+        </div>
     </div>
 </div>
 {% endblock %}
