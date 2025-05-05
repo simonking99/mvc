@@ -4,19 +4,17 @@ namespace App\Tests\Game;
 
 use PHPUnit\Framework\TestCase;
 use App\Game\Game;
+use App\Game\ScoreCalculator;
 use App\Card\Card;
 
 class GameTest extends TestCase
 {
-
-    // Test to create a game object
     public function testCreateObject(): void
     {
         $game = new Game();
         $this->assertInstanceOf(Game::class, $game);
     }
 
-    // Test initial hands are empty
     public function testInitialHandsAreEmpty(): void
     {
         $game = new Game();
@@ -24,7 +22,6 @@ class GameTest extends TestCase
         $this->assertCount(0, $game->getDealerHand()->getCards());
     }
 
-    // Test deal cards to player
     public function testDealCardToPlayer(): void
     {
         $game = new Game();
@@ -32,7 +29,6 @@ class GameTest extends TestCase
         $this->assertCount(1, $game->getPlayerHand()->getCards());
     }
 
-    // Test deal cards to dealer
     public function testDealCardToDealer(): void
     {
         $game = new Game();
@@ -40,38 +36,43 @@ class GameTest extends TestCase
         $this->assertCount(1, $game->getDealerHand()->getCards());
     }
 
-    // Test that ace is counted as 11 if handvalue is 5
     public function testPlayerAceHandledCorrectly(): void
     {
         $game = new Game();
         $game->getPlayerHand()->add(new Card("♠", "5"));
         $game->getPlayerHand()->add(new Card("♠", "A"));
-        $score = $game->calculateHandValue($game->getPlayerHand());
+
+        $calculator = new ScoreCalculator();
+        $score = $calculator->calculate($game->getPlayerHand());
+
         $this->assertEquals(16, $score);
     }
 
-    // Test that ace is counted as 11 if handvalue is 10
     public function testDealerAceHandledCorrectly(): void
     {
         $game = new Game();
         $game->getDealerHand()->add(new Card("♠", "10"));
         $game->getDealerHand()->add(new Card("♦", "A"));
-        $score = $game->calculateHandValue($game->getDealerHand());
+
+        $calculator = new ScoreCalculator();
+        $score = $calculator->calculate($game->getDealerHand());
+
         $this->assertEquals(21, $score);
     }
 
-    // Test that ace is counted as 1 if handvalue is 20
     public function testDealerAceAsOne(): void
     {
         $game = new Game();
         $game->getDealerHand()->add(new Card("♠", "10"));
         $game->getDealerHand()->add(new Card("♦", "10"));
         $game->getDealerHand()->add(new Card("♣", "A"));
-        $score = $game->calculateHandValue($game->getDealerHand());
+
+        $calculator = new ScoreCalculator();
+        $score = $calculator->calculate($game->getDealerHand());
+
         $this->assertEquals(21, $score);
     }
 
-    // Test where player bust is detected
     public function testCheckGameStatusPlayerBust(): void
     {
         $game = new Game();
@@ -83,7 +84,6 @@ class GameTest extends TestCase
         $this->assertEquals("Dealer Wins", $game->getWinner());
     }
 
-    // Test where player wins with 21
     public function testCheckGameStatusPlayer21(): void
     {
         $game = new Game();
@@ -94,7 +94,6 @@ class GameTest extends TestCase
         $this->assertEquals("Player Wins", $game->getWinner());
     }
 
-    // Test where dealer bust is detected
     public function testCheckWinnerDealerBusts(): void
     {
         $game = new Game();
@@ -107,7 +106,6 @@ class GameTest extends TestCase
         $this->assertTrue($game->isGameOver());
     }
 
-    // Test when dealer's turn ends the game
     public function testDealerTurnEndsGame(): void
     {
         $game = new Game();
@@ -117,7 +115,6 @@ class GameTest extends TestCase
         $this->assertNotEmpty($game->getWinner());
     }
 
-    // Test checking winner when player has higher score
     public function testCheckWinnerPlayerWins(): void
     {
         $game = new Game();
@@ -132,7 +129,6 @@ class GameTest extends TestCase
         $this->assertEquals("Player Wins", $game->getWinner());
     }
 
-    // Test checking winner when dealer has higher score
     public function testCheckWinnerDealerWins(): void
     {
         $game = new Game();
@@ -147,7 +143,6 @@ class GameTest extends TestCase
         $this->assertEquals("Dealer Wins", $game->getWinner());
     }
 
-    // Test checking winner when it's a draw
     public function testCheckWinnerDraw(): void
     {
         $game = new Game();
