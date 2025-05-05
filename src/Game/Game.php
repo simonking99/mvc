@@ -13,6 +13,7 @@ class Game
     private CardHand $playerHand;
     private CardHand $dealerHand;
     private DeckOfCards $deck;
+    private ScoreCalculator $scoreCalculator;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class Game
         $this->dealerHand = new CardHand();
         $this->deck = new DeckOfCards();
         $this->deck->shuffle();
+        $this->scoreCalculator = new ScoreCalculator();
     }
 
     public function dealCardToPlayer(): void
@@ -36,37 +38,9 @@ class Game
         $this->checkGameStatus();
     }
 
-    public function calculateHandValue(CardHand $hand): int
-    {
-        $value = 0;
-        $aceCount = 0;
-
-        foreach ($hand->getCards() as $card) {
-            if (in_array($card->getValue(), ['J', 'Q', 'K'])) {
-                $value += 10;
-                continue;
-            }
-
-            if ($card->getValue() == 'A') {
-                $value += 1;
-                $aceCount++;
-                continue;
-            }
-
-            $value += (int) $card->getValue();
-        }
-
-        while ($aceCount > 0 && $value + 10 <= 21) {
-            $value += 10;
-            $aceCount--;
-        }
-
-        return $value;
-    }
-
     public function checkGameStatus(): void
     {
-        $playerScore = $this->calculateHandValue($this->playerHand);
+        $playerScore = $this->scoreCalculator->calculate($this->playerHand);
 
         if ($playerScore > 21) {
             $this->gameOver = true;
@@ -99,7 +73,7 @@ class Game
 
     public function dealerTurn(): void
     {
-        while ($this->calculateHandValue($this->dealerHand) < 17 && !$this->gameOver) {
+        while ($this->scoreCalculator->calculate($this->dealerHand) < 17 && !$this->gameOver) {
             $this->dealCardToDealer();
         }
 
@@ -108,28 +82,19 @@ class Game
 
     public function checkWinner(): void
     {
-        $playerScore = $this->calculateHandValue($this->playerHand);
-        $dealerScore = $this->calculateHandValue($this->dealerHand);
+        $playerScore = $this->scoreCalculator->calculate($this->playerHand);
+        $dealerScore = $this->scoreCalculator->calculate($this->dealerHand);
 
         if ($dealerScore > 21) {
             $this->winner = "Player Wins";
-            $this->gameOver = true;
-            return;
-        }
-
-        if ($playerScore > $dealerScore) {
+        } elseif ($playerScore > $dealerScore) {
             $this->winner = "Player Wins";
-            $this->gameOver = true;
-            return;
-        }
-
-        if ($playerScore < $dealerScore) {
+        } elseif ($playerScore < $dealerScore) {
             $this->winner = "Dealer Wins";
-            $this->gameOver = true;
-            return;
+        } else {
+            $this->winner = "Draw";
         }
 
-        $this->winner = "Draw";
         $this->gameOver = true;
     }
 }
