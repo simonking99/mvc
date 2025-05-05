@@ -346,6 +346,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-LuckyControllerTwig.html#method_report"
         },                {
+            "fqsen": "\\App\\Controller\\MetricsController",
+            "name": "MetricsController",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\MetricsController\u003A\u003Alanding\u0028\u0029",
+            "name": "landing",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html#method_landing"
+        },                {
             "fqsen": "\\App\\Controller\\SessionController",
             "name": "SessionController",
             "summary": "",
@@ -471,11 +481,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#method_dealCardToDealer"
         },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AcalculateHandValue\u0028\u0029",
-            "name": "calculateHandValue",
-            "summary": "",
-            "url": "classes/App-Game-Game.html#method_calculateHandValue"
-        },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AcheckGameStatus\u0028\u0029",
             "name": "checkGameStatus",
             "summary": "",
@@ -535,6 +540,21 @@ Search.appendIndex(
             "name": "deck",
             "summary": "",
             "url": "classes/App-Game-Game.html#property_deck"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024scoreCalculator",
+            "name": "scoreCalculator",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#property_scoreCalculator"
+        },                {
+            "fqsen": "\\App\\Game\\ScoreCalculator",
+            "name": "ScoreCalculator",
+            "summary": "",
+            "url": "classes/App-Game-ScoreCalculator.html"
+        },                {
+            "fqsen": "\\App\\Game\\ScoreCalculator\u003A\u003Acalculate\u0028\u0029",
+            "name": "calculate",
+            "summary": "",
+            "url": "classes/App-Game-ScoreCalculator.html#method_calculate"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
