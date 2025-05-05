@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Game\Game;
+use App\Game\ScoreCalculator;
 
 class GameController extends AbstractController
 {
@@ -33,9 +34,10 @@ class GameController extends AbstractController
         }
 
         $game->dealCardToPlayer();
+        $calculator = new ScoreCalculator();
 
-        $playerScore = $game->calculateHandValue($game->getPlayerHand());
-        $dealerScore = $game->calculateHandValue($game->getDealerHand());
+        $playerScore = $calculator->calculate($game->getPlayerHand());
+        $dealerScore = $calculator->calculate($game->getDealerHand());
 
         $winner = '';
         if ($playerScore > 21) {
@@ -64,15 +66,16 @@ class GameController extends AbstractController
         }
 
         $game->dealCardToPlayer();
+        $calculator = new ScoreCalculator();
 
-        if ($game->calculateHandValue($game->getPlayerHand()) == 21) {
+        $playerScore = $calculator->calculate($game->getPlayerHand());
+        $dealerScore = $calculator->calculate($game->getDealerHand());
+
+        if ($playerScore == 21) {
             return $this->redirectToRoute('game_stand');
         }
 
-        $winner = '';
-        if ($game->isGameOver()) {
-            $winner = $game->getWinner();
-        }
+        $winner = $game->isGameOver() ? $game->getWinner() : '';
 
         $session->set('game', $game);
 
@@ -80,8 +83,8 @@ class GameController extends AbstractController
             'game' => $game,
             'playerHand' => $game->getPlayerHand()->getCards(),
             'dealerHand' => $game->getDealerHand()->getCards(),
-            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
-            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
+            'playerScore' => $playerScore,
+            'dealerScore' => $dealerScore,
             'winner' => $winner,
         ]);
     }
@@ -96,6 +99,7 @@ class GameController extends AbstractController
         }
 
         $game->dealerTurn();
+        $calculator = new ScoreCalculator();
 
         $session->set('game', $game);
 
@@ -103,8 +107,8 @@ class GameController extends AbstractController
             'game' => $game,
             'playerHand' => $game->getPlayerHand()->getCards(),
             'dealerHand' => $game->getDealerHand()->getCards(),
-            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
-            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
+            'playerScore' => $calculator->calculate($game->getPlayerHand()),
+            'dealerScore' => $calculator->calculate($game->getDealerHand()),
             'winner' => $game->getWinner(),
         ]);
     }
@@ -113,7 +117,6 @@ class GameController extends AbstractController
     public function reset(SessionInterface $session): Response
     {
         $session->remove('game');
-
         return $this->redirectToRoute('game_start');
     }
 }
