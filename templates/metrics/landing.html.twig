@@ -12,7 +12,7 @@
             God kodkvalitet är viktigt för att koden ska vara lätt att 
             underhålla och förstå över tid, även om det inte alltid krävs för 
             att få en webbplats att fungera. För att arbeta mot hög kodkvalitet 
-            kan vi använda oss av <strong>"6C"</strong>:
+            kan vi använda oss av 6C:
         </p>
 
         <div class="quality-section">
@@ -62,8 +62,53 @@
         De fanns inga allvarliga varningar kring kodstil vilket betyder att koden är välskriven.
         Dock så visade analysen att testtäckningen låg på 23% vilket är ganska lågt. Det visar att många delar av koden 
         fortfarande inte är testade.</p>
+        <p>
+        <a href="https://scrutinizer-ci.com/g/simonking99/mvc/?branch=main">
+            <img src="https://scrutinizer-ci.com/g/simonking99/mvc/badges/quality-score.png?b=main" alt="Scrutinizer Code Quality" />
+        </a>
+        <br>
+        <a href="https://scrutinizer-ci.com/g/simonking99/mvc/?branch=main">
+            <img src="https://scrutinizer-ci.com/g/simonking99/mvc/badges/coverage.png?b=main" alt="Code Coverage" />
+        </a>
+        <br>
+        <a href="https://scrutinizer-ci.com/g/simonking99/mvc/build-status/main">
+            <img src="https://scrutinizer-ci.com/g/simonking99/mvc/badges/build.png?b=main" alt="Build Status" />
+        </a>
 
+        <h1>Förbättringar</h1>
+        <p>
+        Efter att jag granskat analysen från Scrutinizer kunde jag identifiera fem 
+        kodproblem i projektet. Två av dem finns i LibraryController.php.
+        Det första är en ogiltig typdeklaration: klassen ProductRepository används 
+        men existerar inte eller är inte korrekt inkluderad, vilket klassificeras som en bugg.
+        Det andra är att parametern $request injiceras men aldrig används, vilket leder till 
+        onödig kod som bör rensas bort.
+        </p>
 
+        <p>
+        Ytterligare två problem finns i konfigurationsfilen för php-cs-fixer.
+        Där rapporterar Scrutinizer att typerna PhpCsFixer\Finder och PhpCsFixer\Config 
+        inte hittas. Detta tyder på att beroenden kanske inte är korrekt installerade 
+        eller att autoloading saknas. Dessa fel påverkar både byggprocessen och möjligheten 
+        att köra kodformattering automatiskt, och behöver åtgärdas för att säkerställa korrekt verktygsstöd.
+        </p>
+
+        <p>
+        Utifrån detta fokuserar jag på följande förbättringar:
+        </p>
+        <ul>
+        <li>Ta bort eller ersätta ogiltiga typreferenser i LibraryController.php</li>
+        <li>Rensa bort oanvända parametrar</li>
+        <li>Felsöka och rätta beroendeproblem i php-cs-fixer-konfigurationen</li>
+        <li>Utöka testtäckningen, som ligger på 23 %</li>
+        </ul>
+        <p>
+        Dessa åtgärder är direkt kopplade till flera av 6C-principerna, framför allt
+        Codestyle, Complexity, Coverage och CRAP.
+        Jag räknar med att åtgärderna både höjer kvaliteten och förenklar framtida underhåll.
+        </p>
+
+     </p>
 
         </div>
     </div>
