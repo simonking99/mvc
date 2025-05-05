@@ -7,7 +7,7 @@
 
 <div class="about-columns">
     <div class="about-text">
-            <h1>Introduktion</h1>
+        <h1>Introduktion</h1>
         <p>
             God kodkvalitet är viktigt för att koden ska vara lätt att 
             underhålla och förstå över tid, även om det inte alltid krävs för 
@@ -43,6 +43,17 @@
                 CRAP: Kombinerar komplexitet och testtäckning för att hitta riskabla kodområden. 
                 Ett högt CRAP-värde betyder att en kodbit både är svår och dåligt testad, vilket ökar risken för fel.
             </p>
+
+        <h1>Phpmetrics</h1>
+        <img src="{{ asset('img/metrics.png') }}" alt="Metrics" class="simon">
+        <p>Varje fil representeras av en cirkel.
+        De tre största röda cirklarna är App/Game/Game, App/Controller/LibraryController och App/Controller/GameController,
+        Storleken på cirkeln visar hur komplex koden är, och färgen visar hur lätt eller svår koden är att underhålla. 
+        Stora, röda cirklar indikerar kod som både är komplex och svår att underhålla vilket tyder på att dessa bör granskas och förbättras.
+        Efter en titt inuti Game klassen så kan man ta slutsatsen att klassen är för stor och gör för mycket.
+        Klassen har för många beroenden och blir svår att underhålla. En förbättringsmöjlighet kan var att dela upp klasserna i flera mindre.
+        </p>
+
         </div>
     </div>
 </div>
