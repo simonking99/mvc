@@ -87,4 +87,66 @@ final class ProjectController extends AbstractController
             'allDone' => $allDone
         ]);
     }
+
+    #[Route('/proj/play/{player}/{action}', name: 'proj_play_action', methods: ['POST'])]
+    public function playAction(SessionInterface $session, Request $request, int $player, string $action): Response
+    {
+        $blackjack = $session->get('blackjack');
+
+        if (!$blackjack instanceof Blackjack) {
+            return $this->redirectToRoute('proj_play');
+        }
+
+        $games = $blackjack->getGames();
+        $players = $blackjack->getPlayers();
+
+        if (!isset($games[$player], $players[$player])) {
+            return $this->redirectToRoute('proj_play');
+        }
+
+        $game = $games[$player];
+
+        if ($game->isGameOver()) {
+            return $this->redirectToRoute('proj_play');
+        }
+
+        if ($action === 'bet') {
+            $amount = intval($request->request->get('bet') ?? 0);
+            $blackjack->placeBet($player, $amount);
+
+            if ($blackjack->allBetsPlaced()) {
+                $blackjack->startRound();
+            }
+
+        } elseif ($action === 'hit') {
+            $game->dealCardToPlayer();
+            if ($game->calculateScore($game->getPlayerHand()) > 21) {
+                $game->checkWinner();
+            }
+
+        } elseif ($action === 'stand') {
+            $game->markAsStood();
+        }
+
+        $allDone = true;
+        foreach ($games as $g) {
+            if (!$g->isGameOver()) {
+                $allDone = false;
+                break;
+            }
+        }
+
+        if ($allDone) {
+            $blackjack->finishRound();
+
+            if (count($blackjack->getPlayers()) === 0) {
+                $session->clear();
+                return $this->redirectToRoute('proj_login');
+            }
+        }
+
+        $session->set('blackjack', $blackjack);
+
+        return $this->redirectToRoute('proj_play');
+    }
 }
