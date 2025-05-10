@@ -45,4 +45,14 @@ class Blackjack
             $player->placeBet($amount);
         }
     }
+
+    public function allBetsPlaced(): bool
+    {
+        foreach ($this->players as $player) {
+            if ($player->getBet() <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
