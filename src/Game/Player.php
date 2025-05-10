@@ -19,4 +19,9 @@ class Player
     {
         return $this->name;
     }
+
+    public function getBank(): int
+    {
+        return $this->bank;
+    }
 }
