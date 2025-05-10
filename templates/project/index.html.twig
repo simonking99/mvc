@@ -1,11 +1,16 @@
 {% extends 'project_base.html.twig' %}
 
-{% block title %}Hello ProjectController!{% endblock %}
+{% block title %}Blackjack – Startsida{% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Index</h1>
-    <p> </p>
+<div class="blackjack-main">
+    <div class="blackjack-start-wrapper">
+        <h1>Welcome to the game Blackjack!</h1>
+        <p>
+            <a href="{{ path('proj_login') }}" class="btn-enter">
+                Enter Game
+            </a>
+        </p>
+    </div>
 </div>
 {% endblock %}
