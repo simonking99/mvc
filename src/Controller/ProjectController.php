@@ -44,4 +44,47 @@ final class ProjectController extends AbstractController
 
         return $this->render('project/login.html.twig');
     }
+
+    #[Route('/proj/play', name: 'proj_play')]
+    public function play(SessionInterface $session): Response
+    {
+        $blackjack = $session->get('blackjack');
+
+        if (!$blackjack instanceof Blackjack) {
+            return $this->redirectToRoute('proj_login');
+        }
+
+        $players = $blackjack->getPlayers();
+        $games = $blackjack->getGames();
+        $dealer = $blackjack->getDealer();
+        $dealerHand = $dealer->getDealerHand()->getCards();
+
+        $hands = [];
+        $scores = [];
+        $winners = [];
+        $gameOver = [];
+
+        $calculator = new ScoreCalculator();
+
+        foreach ($games as $i => $game) {
+            $hands[$i] = $game->getPlayerHand()->getCards();
+            $scores[$i] = $calculator->calculate($game->getPlayerHand());
+            $winners[$i] = $game->isGameOver() ? $game->getWinner() : '';
+            $gameOver[$i] = $game->isGameOver();
+        }
+
+        $allDone = !in_array(false, $gameOver, true);
+        $dealerScore = $allDone ? $calculator->calculate($dealer->getDealerHand()) : null;
+
+        return $this->render('project/play.html.twig', [
+            'players' => $players,
+            'hands' => $hands,
+            'scores' => $scores,
+            'winners' => $winners,
+            'gameOver' => $gameOver,
+            'dealerHand' => $dealerHand,
+            'dealerScore' => $dealerScore,
+            'allDone' => $allDone
+        ]);
+    }
 }
