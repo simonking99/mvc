@@ -161,4 +161,11 @@ final class ProjectController extends AbstractController
 
         return $this->redirectToRoute('proj_play');
     }
+
+    #[Route('/proj/reset', name: 'proj_reset')]
+    public function reset(SessionInterface $session): Response
+    {
+        $session->clear();
+        return $this->redirectToRoute('proj_login');
+    }
 }
