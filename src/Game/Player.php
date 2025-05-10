@@ -38,4 +38,9 @@ class Player
         }
         return false;
     }
+
+    public function applyWin(bool $blackjack = false): void
+    {
+        $this->bank += $blackjack ? intval($this->bet * 1.5) : $this->bet;
+    }
 }
