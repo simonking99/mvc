@@ -43,4 +43,9 @@ class Player
     {
         $this->bank += $blackjack ? intval($this->bet * 1.5) : $this->bet;
     }
+
+    public function applyLoss(): void
+    {
+        $this->bank -= $this->bet;
+    }
 }
