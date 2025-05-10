@@ -27,4 +27,9 @@ class Blackjack
     {
         return $this->dealerGame;
     }
+
+    public function getPlayers(): array
+    {
+        return $this->players;
+    }
 }
