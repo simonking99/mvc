@@ -254,6 +254,16 @@ nav a:hover {
     margin-top: 2rem;
 }
 
+.site-footer-project {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: #eab676;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+}
+
 .card-links {
     width: 100%;
     display: flex;
@@ -424,4 +434,68 @@ nav a:hover {
 
 .form-wrapper button:hover {
     background-color: #218838;
+}
+
+.project-header {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.project-footer {
+    background: linear-gradient(135deg, #232526, #414345);
+    color: white;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-nav {
+    background: #ffffff;
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.project-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.project-nav a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.project-nav a:hover {
+    color: #005fa3;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }

@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="{{ asset('img/glider.svg') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Project{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/glider.svg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        <header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})">
-            <span class="site-title">My Symfony Site</span>
-        </header>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        <nav>
-            <ul>
-                <li><a href="{{ path('home') }}">Home</a></li>
-            </ul>
-        </nav>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+    <header class="project-header">
+        <div class="project-title">Project Site</div>
+    </header>
 
-        <main>
-            {% block body %}{% endblock %}
-        </main>
+    <nav class="project-nav">
+        <ul>
+            <li><a href="{{ path('home') }}"><i class="fa fa-flag"></i> Report site</a></li>        
+            <li><a href="{{ path('proj') }}"><i class="fa fa-house"></i> Home</a></li>             
+            <li><a href="{{ path('projabout') }}"><i class="fa fa-info-circle"></i> About</a></li>
+        </ul>
+    </nav>
 
-        <footer class="site-footer">
-            <p>© {{ "now"|date("Y") }} Simon Bosnjak – Webbprogrammering BTH</p>
-        </footer>
-    </body>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="project-footer">
+        <p>© {{ "now"|date("Y") }} Simon Bosnjak – Webbprogrammering BTH</p>
+    </footer>
+</body>
 </html>
