@@ -1,10 +1,36 @@
 {% extends 'project_base.html.twig' %}
 
-{% block title %}Hello ProjectController!{% endblock %}
+{% block title %}About – Blackjack{% endblock %}
 
 {% block body %}
+<div class="blackjack-main">
+    <div class="about-section">
+        <h1>About the Blackjack Project</h1>
+        <p>
+            This is a multiplayer Blackjack game built using Symfony. Three players can play against a shared dealer.
+        </p>
 
-<div class="example-wrapper">
-    <h1>About</h1>
+        <h2>How the game works</h2>
+        <ul>
+            <li>Go to <strong><a href="{{ path('proj_login') }}">/proj/login</a></strong> to enter player names.</li>
+            <li>Each player starts with a balance of 1000 kr.</li>
+            <li>Players place their bets and are dealt two cards.</li>
+            <li>Players can choose to Hit (draw a card) or Stand (end their turn).</li>
+            <li>Once all players are done, the dealer plays automatically according to standard rules.</li>
+            <li>The game determines the winner based on scores, 21 wins, anything over 21 is a loss.</li>
+            <li>Players who lose all their money are removed from the game.</li>
+        </ul>
+
+        <h2>Available routes</h2>
+        <ul>
+            <li>/proj – Start page</li>
+            <li>/proj/login – Enter player names</li>
+            <li>/proj/play – Active game view</li>
+            <li>/proj/play/{player}/{action} – Player actions (bet, hit, stand)</li>
+            <li>/proj/new-round – Start a new round</li>
+            <li>/proj/reset – Reset and restart the game</li>
+            <li>/proj/about – This information page</li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
