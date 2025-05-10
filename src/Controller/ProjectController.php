@@ -24,4 +24,24 @@ final class ProjectController extends AbstractController
     {
         return $this->render('project/about.html.twig');
     }
+
+    #[Route('/proj/login', name: 'proj_login')]
+    public function login(SessionInterface $session, Request $request): Response
+    {
+        if ($request->isMethod('POST')) {
+            $names = array_filter([
+                $request->request->get('player1'),
+                $request->request->get('player2'),
+                $request->request->get('player3')
+            ]);
+
+            $players = array_map(fn($name) => new Player($name), $names);
+            $game = new Blackjack($players);
+
+            $session->set('blackjack', $game);
+            return $this->redirectToRoute('proj_play');
+        }
+
+        return $this->render('project/login.html.twig');
+    }
 }
