@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Game\Blackjack;
+use App\Game\Player;
+use App\Game\ScoreCalculator;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class ProjectController extends AbstractController
 {
@@ -12,11 +17,5 @@ final class ProjectController extends AbstractController
     public function index(): Response
     {
         return $this->render('project/index.html.twig');
-    }
-
-    #[Route('/proj/about', name: 'projabout')]
-    public function about(): Response
-    {
-        return $this->render('project/about.html.twig');
     }
 }
