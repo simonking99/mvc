@@ -29,4 +29,13 @@ class Player
     {
         return $this->bet;
     }
+
+    public function placeBet(int $amount): bool
+    {
+        if ($amount > 0 && $amount <= $this->bank) {
+            $this->bet = $amount;
+            return true;
+        }
+        return false;
+    }
 }
