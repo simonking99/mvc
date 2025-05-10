@@ -1,0 +1,74 @@
+{% extends 'project_base.html.twig' %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block body %}
+<div class="blackjack-main">
+    <div class="blackjack-table">
+        <h1>Blackjack</h1>
+
+        <div class="dealer">
+            <h2>Dealer</h2>
+            <p class="cards">
+                {% for card in dealerHand %}
+                    {{ card.getAsString() }}
+                {% endfor %}
+            </p>
+            {% if dealerScore is not null %}
+                <p><strong>Points:</strong> {{ dealerScore }}</p>
+            {% endif %}
+        </div>
+
+        <div class="player-container">
+            {% for player in players %}
+                {% set index = loop.index0 %}
+                <div class="player">
+                    <h3>{{ player.getName() }}</h3>
+                    <p><strong>Saldo:</strong> {{ player.getBank() }} kr</p>
+                    <p><strong>Bet:</strong> {{ player.getBet() }} kr</p>
+
+                    <p class="cards">
+                        {% for card in hands[index] %}
+                            {{ card.getAsString() }}
+                        {% endfor %}
+                    </p>
+
+                    <p><strong>Points:</strong> {{ scores[index] }}</p>
+
+                    {% if winners[index] %}
+                        <p><strong>Result:</strong> {{ winners[index] }}</p>
+                    {% endif %}
+
+                    {% if not gameOver[index] %}
+                        <div class="actions">
+                            {% if player.getBet() == 0 %}
+                                <form method="post" action="{{ path('proj_play_action', {'player': index, 'action': 'bet'}) }}">
+                                    <input type="number" name="bet" min="1" max="{{ player.getBank() }}" required>
+                                    <button class="btn-bet" type="submit">Bet</button>
+                                </form>
+                            {% else %}
+                                <form method="post" action="{{ path('proj_play_action', {'player': index, 'action': 'hit'}) }}">
+                                    <button class="btn-hit" type="submit">Hit</button>
+                                </form>
+                                <form method="post" action="{{ path('proj_play_action', {'player': index, 'action': 'stand'}) }}">
+                                    <button class="btn-stand" type="submit">Stand</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if allDone %}
+            <form method="get" action="{{ path('proj_new_round') }}">
+                <button class="btn-new-round" type="submit">New round</button>
+            </form>
+        {% endif %}
+
+        <form method="get" action="{{ path('proj_reset') }}">
+            <button class="btn-reset" type="submit">Start over with new player</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
