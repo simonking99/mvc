@@ -149,4 +149,16 @@ final class ProjectController extends AbstractController
 
         return $this->redirectToRoute('proj_play');
     }
+
+    #[Route('/proj/new-round', name: 'proj_new_round')]
+    public function newRound(SessionInterface $session): Response
+    {
+        $oldGame = $session->get('blackjack');
+        if ($oldGame instanceof Blackjack) {
+            $players = $oldGame->getPlayers();
+            $session->set('blackjack', new Blackjack($players));
+        }
+
+        return $this->redirectToRoute('proj_play');
+    }
 }
