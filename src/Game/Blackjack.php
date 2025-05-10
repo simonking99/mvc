@@ -55,4 +55,12 @@ class Blackjack
         }
         return true;
     }
+
+    public function startRound(): void
+    {
+        foreach ($this->games as $game) {
+            $game->startRound();
+        }
+        $this->dealerGame->startRound();
+    }
 }
