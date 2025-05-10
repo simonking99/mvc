@@ -24,4 +24,9 @@ class Player
     {
         return $this->bank;
     }
+
+    public function getBet(): int
+    {
+        return $this->bet;
+    }
 }
