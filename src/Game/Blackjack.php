@@ -37,4 +37,12 @@ class Blackjack
     {
         return $this->games;
     }
+
+    public function placeBet(int $playerIndex, int $amount): void
+    {
+        $player = $this->players[$playerIndex];
+        if ($amount > 0 && $amount <= $player->getBank()) {
+            $player->placeBet($amount);
+        }
+    }
 }
