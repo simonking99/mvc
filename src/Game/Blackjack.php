@@ -32,4 +32,9 @@ class Blackjack
     {
         return $this->players;
     }
+
+    public function getGames(): array
+    {
+        return $this->games;
+    }
 }
