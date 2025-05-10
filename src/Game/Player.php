@@ -48,4 +48,9 @@ class Player
     {
         $this->bank -= $this->bet;
     }
+
+    public function isBankrupt(): bool
+    {
+        return $this->bank <= 0;
+    }
 }
