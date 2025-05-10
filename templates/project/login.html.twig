@@ -1,0 +1,25 @@
+{% extends 'project_base.html.twig' %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/blackjack.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="blackjack-login">
+    <h2>Name the players</h2>
+    <form method="post" class="login-form">
+        <label for="player1">Player 1:</label>
+        <input type="text" id="player1" name="player1" required>
+
+        <label for="player2">Player 2:</label>
+        <input type="text" id="player2" name="player2" required>
+
+        <label for="player3">Player 3:</label>
+        <input type="text" id="player3" name="player3" required>
+
+        <button type="submit" class="btn-start">Start the game</button>
+    </form>
+</div>
+{% endblock %}
