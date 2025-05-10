@@ -105,4 +105,9 @@ class Blackjack
         $this->players = array_values($this->players);
         $this->games = array_values($this->games);
     }
+
+    public function getActivePlayers(): array
+    {
+        return array_filter($this->players, fn($p) => !$p->isBankrupt());
+    }
 }
