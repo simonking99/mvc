@@ -143,4 +143,17 @@ class GameTest extends TestCase
 
         $this->assertEquals("Draw", $game->getWinner());
     }
+
+    public function testMarkAsStoodEndsGame(): void
+{
+    $game = new Game();
+    $game->getPlayerHand()->add(new Card("♠", "9"));
+    $game->getPlayerHand()->add(new Card("♦", "7"));
+    $this->assertFalse($game->isGameOver());
+
+    $game->markAsStood();
+
+    $this->assertTrue($game->isGameOver());
+    $this->assertEquals('', $game->getWinner());
+}
 }

@@ -13,7 +13,9 @@ class Blackjack
     private array $players = [];
 
     /**
-     * @param Player[] $players
+     * Constructor for the Blackjack game.
+     *
+     * @param Player[] $players An array of players participating in the game.
      */
     public function __construct(array $players)
     {
@@ -27,23 +29,42 @@ class Blackjack
         $this->dealerGame->setAsDealer();
     }
 
+    /**
+     * Get the dealer's game instance.
+     *
+     * @return Game The dealer's game.
+     */
     public function getDealer(): Game
     {
         return $this->dealerGame;
     }
 
-    /** @return Player[] */
+    /**
+     * Get all players in the game.
+     *
+     * @return Player[] An array of players.
+     */
     public function getPlayers(): array
     {
         return $this->players;
     }
 
-    /** @return Game[] */
+    /**
+     * Get all game instances for the players.
+     *
+     * @return Game[] An array of games for each player.
+     */
     public function getGames(): array
     {
         return $this->games;
     }
 
+    /**
+     * Place a bet for a specific player.
+     *
+     * @param int $playerIndex The index of the player placing the bet.
+     * @param int $amount The amount of the bet.
+     */
     public function placeBet(int $playerIndex, int $amount): void
     {
         $player = $this->players[$playerIndex];
@@ -52,6 +73,11 @@ class Blackjack
         }
     }
 
+    /**
+     * Check if all players have placed their bets.
+     *
+     * @return bool True if all players have placed bets, false otherwise.
+     */
     public function allBetsPlaced(): bool
     {
         foreach ($this->players as $player) {
@@ -63,6 +89,9 @@ class Blackjack
         return true;
     }
 
+    /**
+     * Start a new round for all players and the dealer.
+     */
     public function startRound(): void
     {
         foreach ($this->games as $game) {
@@ -71,6 +100,9 @@ class Blackjack
         $this->dealerGame->startRound();
     }
 
+    /**
+     * Finish the current round, determine winners, and update player states.
+     */
     public function finishRound(): void
     {
         $this->dealerGame->dealerTurn();
@@ -113,7 +145,11 @@ class Blackjack
         $this->games = array_values($this->games);
     }
 
-    /** @return Player[] */
+    /**
+     * Get all active players who are not bankrupt.
+     *
+     * @return Player[] An array of active players.
+     */
     public function getActivePlayers(): array
     {
         return array_filter($this->players, fn ($p) => !$p->isBankrupt());

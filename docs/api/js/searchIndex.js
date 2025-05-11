@@ -31,6 +31,11 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020card\u0020as\u0020a\u0020string.",
             "url": "classes/App-Card-Card.html#method___toString"
         },                {
+            "fqsen": "\\App\\Card\\Card\u003A\u003AgetAsString\u0028\u0029",
+            "name": "getAsString",
+            "summary": "",
+            "url": "classes/App-Card-Card.html#method_getAsString"
+        },                {
             "fqsen": "\\App\\Card\\Card\u003A\u003A\u0024suit",
             "name": "suit",
             "summary": "",
@@ -356,6 +361,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-MetricsController.html#method_landing"
         },                {
+            "fqsen": "\\App\\Controller\\ProjectController",
+            "name": "ProjectController",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Aabout\u0028\u0029",
+            "name": "about",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_about"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_login"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Aplay\u0028\u0029",
+            "name": "play",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_play"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AplayAction\u0028\u0029",
+            "name": "playAction",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_playAction"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AnewRound\u0028\u0029",
+            "name": "newRound",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_newRound"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_reset"
+        },                {
             "fqsen": "\\App\\Controller\\SessionController",
             "name": "SessionController",
             "summary": "",
@@ -461,6 +506,71 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Form-BookType.html#method_configureOptions"
         },                {
+            "fqsen": "\\App\\Game\\Blackjack",
+            "name": "Blackjack",
+            "summary": "",
+            "url": "classes/App-Game-Blackjack.html"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020for\u0020the\u0020Blackjack\u0020game.",
+            "url": "classes/App-Game-Blackjack.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AgetDealer\u0028\u0029",
+            "name": "getDealer",
+            "summary": "Get\u0020the\u0020dealer\u0027s\u0020game\u0020instance.",
+            "url": "classes/App-Game-Blackjack.html#method_getDealer"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AgetPlayers\u0028\u0029",
+            "name": "getPlayers",
+            "summary": "Get\u0020all\u0020players\u0020in\u0020the\u0020game.",
+            "url": "classes/App-Game-Blackjack.html#method_getPlayers"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AgetGames\u0028\u0029",
+            "name": "getGames",
+            "summary": "Get\u0020all\u0020game\u0020instances\u0020for\u0020the\u0020players.",
+            "url": "classes/App-Game-Blackjack.html#method_getGames"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AplaceBet\u0028\u0029",
+            "name": "placeBet",
+            "summary": "Place\u0020a\u0020bet\u0020for\u0020a\u0020specific\u0020player.",
+            "url": "classes/App-Game-Blackjack.html#method_placeBet"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AallBetsPlaced\u0028\u0029",
+            "name": "allBetsPlaced",
+            "summary": "Check\u0020if\u0020all\u0020players\u0020have\u0020placed\u0020their\u0020bets.",
+            "url": "classes/App-Game-Blackjack.html#method_allBetsPlaced"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AstartRound\u0028\u0029",
+            "name": "startRound",
+            "summary": "Start\u0020a\u0020new\u0020round\u0020for\u0020all\u0020players\u0020and\u0020the\u0020dealer.",
+            "url": "classes/App-Game-Blackjack.html#method_startRound"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AfinishRound\u0028\u0029",
+            "name": "finishRound",
+            "summary": "Finish\u0020the\u0020current\u0020round,\u0020determine\u0020winners,\u0020and\u0020update\u0020player\u0020states.",
+            "url": "classes/App-Game-Blackjack.html#method_finishRound"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003AgetActivePlayers\u0028\u0029",
+            "name": "getActivePlayers",
+            "summary": "Get\u0020all\u0020active\u0020players\u0020who\u0020are\u0020not\u0020bankrupt.",
+            "url": "classes/App-Game-Blackjack.html#method_getActivePlayers"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003A\u0024games",
+            "name": "games",
+            "summary": "",
+            "url": "classes/App-Game-Blackjack.html#property_games"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003A\u0024dealerGame",
+            "name": "dealerGame",
+            "summary": "",
+            "url": "classes/App-Game-Blackjack.html#property_dealerGame"
+        },                {
+            "fqsen": "\\App\\Game\\Blackjack\u003A\u003A\u0024players",
+            "name": "players",
+            "summary": "",
+            "url": "classes/App-Game-Blackjack.html#property_players"
+        },                {
             "fqsen": "\\App\\Game\\Game",
             "name": "Game",
             "summary": "",
@@ -470,6 +580,16 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/App-Game-Game.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AsetAsDealer\u0028\u0029",
+            "name": "setAsDealer",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_setAsDealer"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AstartRound\u0028\u0029",
+            "name": "startRound",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_startRound"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AdealCardToPlayer\u0028\u0029",
             "name": "dealCardToPlayer",
@@ -481,10 +601,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#method_dealCardToDealer"
         },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AregisterAceValue\u0028\u0029",
+            "name": "registerAceValue",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_registerAceValue"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AcalculateScore\u0028\u0029",
+            "name": "calculateScore",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_calculateScore"
+        },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AcheckGameStatus\u0028\u0029",
             "name": "checkGameStatus",
             "summary": "",
             "url": "classes/App-Game-Game.html#method_checkGameStatus"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AmarkAsStood\u0028\u0029",
+            "name": "markAsStood",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_markAsStood"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AdealerTurn\u0028\u0029",
+            "name": "dealerTurn",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_dealerTurn"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003AcheckWinner\u0028\u0029",
+            "name": "checkWinner",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#method_checkWinner"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003AgetPlayerHand\u0028\u0029",
             "name": "getPlayerHand",
@@ -506,20 +651,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#method_getWinner"
         },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AdealerTurn\u0028\u0029",
-            "name": "dealerTurn",
+            "fqsen": "\\App\\Game\\Game\u003A\u003AsetWinner\u0028\u0029",
+            "name": "setWinner",
             "summary": "",
-            "url": "classes/App-Game-Game.html#method_dealerTurn"
-        },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003AcheckWinner\u0028\u0029",
-            "name": "checkWinner",
-            "summary": "",
-            "url": "classes/App-Game-Game.html#method_checkWinner"
+            "url": "classes/App-Game-Game.html#method_setWinner"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024gameOver",
             "name": "gameOver",
             "summary": "",
             "url": "classes/App-Game-Game.html#property_gameOver"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024hasStood",
+            "name": "hasStood",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#property_hasStood"
         },                {
             "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024winner",
             "name": "winner",
@@ -541,10 +686,80 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game.html#property_deck"
         },                {
-            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024scoreCalculator",
-            "name": "scoreCalculator",
+            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024isDealer",
+            "name": "isDealer",
             "summary": "",
-            "url": "classes/App-Game-Game.html#property_scoreCalculator"
+            "url": "classes/App-Game-Game.html#property_isDealer"
+        },                {
+            "fqsen": "\\App\\Game\\Game\u003A\u003A\u0024aceValues",
+            "name": "aceValues",
+            "summary": "",
+            "url": "classes/App-Game-Game.html#property_aceValues"
+        },                {
+            "fqsen": "\\App\\Game\\Player",
+            "name": "Player",
+            "summary": "",
+            "url": "classes/App-Game-Player.html"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020for\u0020the\u0020Player\u0020class.",
+            "url": "classes/App-Game-Player.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020player\u0027s\u0020name.",
+            "url": "classes/App-Game-Player.html#method_getName"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AgetBank\u0028\u0029",
+            "name": "getBank",
+            "summary": "Get\u0020the\u0020player\u0027s\u0020current\u0020bank\u0020balance.",
+            "url": "classes/App-Game-Player.html#method_getBank"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AgetBet\u0028\u0029",
+            "name": "getBet",
+            "summary": "Get\u0020the\u0020player\u0027s\u0020current\u0020bet.",
+            "url": "classes/App-Game-Player.html#method_getBet"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AplaceBet\u0028\u0029",
+            "name": "placeBet",
+            "summary": "Place\u0020a\u0020bet\u0020for\u0020the\u0020player.",
+            "url": "classes/App-Game-Player.html#method_placeBet"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AapplyWin\u0028\u0029",
+            "name": "applyWin",
+            "summary": "Apply\u0020a\u0020win\u0020to\u0020the\u0020player\u0027s\u0020bank.",
+            "url": "classes/App-Game-Player.html#method_applyWin"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AapplyLoss\u0028\u0029",
+            "name": "applyLoss",
+            "summary": "Apply\u0020a\u0020loss\u0020to\u0020the\u0020player\u0027s\u0020bank.",
+            "url": "classes/App-Game-Player.html#method_applyLoss"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AresetBet\u0028\u0029",
+            "name": "resetBet",
+            "summary": "Reset\u0020the\u0020player\u0027s\u0020bet\u0020to\u00200.",
+            "url": "classes/App-Game-Player.html#method_resetBet"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003AisBankrupt\u0028\u0029",
+            "name": "isBankrupt",
+            "summary": "Check\u0020if\u0020the\u0020player\u0020is\u0020bankrupt.",
+            "url": "classes/App-Game-Player.html#method_isBankrupt"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/App-Game-Player.html#property_name"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003A\u0024bank",
+            "name": "bank",
+            "summary": "",
+            "url": "classes/App-Game-Player.html#property_bank"
+        },                {
+            "fqsen": "\\App\\Game\\Player\u003A\u003A\u0024bet",
+            "name": "bet",
+            "summary": "",
+            "url": "classes/App-Game-Player.html#property_bet"
         },                {
             "fqsen": "\\App\\Game\\ScoreCalculator",
             "name": "ScoreCalculator",
@@ -553,7 +768,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\ScoreCalculator\u003A\u003Acalculate\u0028\u0029",
             "name": "calculate",
-            "summary": "",
+            "summary": "Calculate\u0020the\u0020total\u0020score\u0020of\u0020a\u0020given\u0020hand.",
             "url": "classes/App-Game-ScoreCalculator.html#method_calculate"
         },                {
             "fqsen": "\\App\\Kernel",
