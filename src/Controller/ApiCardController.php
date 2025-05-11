@@ -2,22 +2,22 @@
 
 namespace App\Controller;
 
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Card\DeckOfCards;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ApiCardController extends AbstractController
 {
-    #[Route("/api", name: "api_landing")]
+    #[Route('/api', name: 'api_landing')]
     public function apiLanding(): Response
     {
         return $this->render('api/index.html.twig');
     }
 
-    #[Route("/api/deck", name: "api_deck", methods: ["GET"])]
+    #[Route('/api/deck', name: 'api_deck', methods: ['GET'])]
     public function apiDeck(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck');
@@ -31,12 +31,11 @@ class ApiCardController extends AbstractController
 
         return $this->json([
             'deck' => $cards,
-            'count' => count($cards)
+            'count' => count($cards),
         ]);
     }
 
-
-    #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ["POST"])]
+    #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['POST'])]
     public function apiShuffle(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck');
@@ -50,15 +49,14 @@ class ApiCardController extends AbstractController
 
         $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
 
-        error_log("post /api/deck/shuffle anropades");
+        error_log('post /api/deck/shuffle anropades');
 
         return $this->json([
-            'deck' => $cards
+            'deck' => $cards,
         ]);
     }
 
-
-    #[Route("/api/deck/draw", name: "api_deck_draw", methods: ["POST"])]
+    #[Route('/api/deck/draw', name: 'api_deck_draw', methods: ['POST'])]
     public function apiDrawCard(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck');
@@ -71,11 +69,11 @@ class ApiCardController extends AbstractController
 
         return $this->json([
             'drawn' => array_map(fn ($card) => (string) $card, $drawn),
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 
-    #[Route("/api/deck/draw/{number}", name: "api_deck_draw_number", requirements: ["number" => "\d+"], methods: ["POST"])]
+    #[Route('/api/deck/draw/{number}', name: 'api_deck_draw_number', requirements: ['number' => "\d+"], methods: ['POST'])]
     public function apiDrawNumber(int $number, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck');
@@ -92,7 +90,7 @@ class ApiCardController extends AbstractController
         return $this->json([
             'drawn' => array_map(fn ($card) => (string) $card, $drawn),
             'requested' => $number,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 
@@ -108,9 +106,9 @@ class ApiCardController extends AbstractController
         return $this->json([
             'playerHand' => array_map(fn ($card) => $card->__toString(), $game->getPlayerHand()->getCards()),
             'dealerHand' => array_map(fn ($card) => $card->__toString(), $game->getDealerHand()->getCards()),
-            'playerScore' => $game->calculateHandValue($game->getPlayerHand()),
-            'dealerScore' => $game->calculateHandValue($game->getDealerHand()),
-            'winner' => $game->getWinner()
+            'playerScore' => $game->calculateScore($game->getPlayerHand()),
+            'dealerScore' => $game->calculateScore($game->getDealerHand()),
+            'winner' => $game->getWinner(),
         ]);
     }
 }

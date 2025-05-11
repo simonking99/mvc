@@ -14,6 +14,7 @@ class CardGraphic extends Card
         ];
 
         print_r($unicodeMap);
+
         return "[{$this->value}{$this->suit}]";
     }
 }

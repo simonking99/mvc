@@ -36,8 +36,8 @@ class CardHand
     public function adjustAceValue(int $value): void
     {
         foreach ($this->cards as $card) {
-            if ($card->getValue() === 'A') {
-                $card->setValue((string)$value);
+            if ('A' === $card->getValue()) {
+                $card->setValue((string) $value);
                 break;
             }
         }

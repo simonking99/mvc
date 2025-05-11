@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Book;
 use App\Form\BookType;
-use Symfony\Component\HttpFoundation\Request;
 use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class LibraryController extends AbstractController
 {
@@ -28,9 +28,6 @@ final class LibraryController extends AbstractController
             ['title' => 'Harry Potter and the Philosopher Stone', 'isbn' => '9781408855652', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/81q77Q39nEL._SL1500_.jpg'],
             ['title' => 'Harry Potter and the Chamber of Secrets', 'isbn' => '1408855666', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/818umIdoruL._SL1500_.jpg'],
             ['title' => 'Harry Potter and the Prisoner of Azkaban', 'isbn' => '1408855674', 'author' => 'J.K. Rowling', 'image' => 'https://m.media-amazon.com/images/I/81NQA1BDlnL._SL1500_.jpg'],
-
-
-
         ];
 
         foreach ($books as $data) {
@@ -55,7 +52,7 @@ final class LibraryController extends AbstractController
         $books = $bookRepository->findAll();
 
         return $this->render('library/books.html.twig', [
-            'books' => $books
+            'books' => $books,
         ]);
     }
 
@@ -83,6 +80,7 @@ final class LibraryController extends AbstractController
     public function showBook(BookRepository $bookRepository, int $id): Response
     {
         $book = $bookRepository->find($id);
+
         return $this->render('library/show.html.twig', [
             'book' => $book,
         ]);
@@ -97,17 +95,18 @@ final class LibraryController extends AbstractController
             throw $this->createNotFoundException("Boken med ID $id kunde inte hittas.");
         }
 
-        $form = $this->createForm(\App\Form\BookType::class, $book);
+        $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $doctrine->getManager()->flush();
+
             return $this->redirectToRoute('library_show', ['id' => $book->getId()]);
         }
 
         return $this->render('library/edit.html.twig', [
             'form' => $form->createView(),
-            'book' => $book
+            'book' => $book,
         ]);
     }
 
@@ -126,5 +125,4 @@ final class LibraryController extends AbstractController
 
         return $this->redirectToRoute('library_books');
     }
-
 }

@@ -17,9 +17,9 @@ class ScoreCalculator
                 continue;
             }
 
-            if ($card->getValue() === 'A') {
-                $value += 1;
-                $aceCount++;
+            if ('A' === $card->getValue()) {
+                ++$value;
+                ++$aceCount;
                 continue;
             }
 
@@ -28,7 +28,7 @@ class ScoreCalculator
 
         while ($aceCount > 0 && $value + 10 <= 21) {
             $value += 10;
-            $aceCount--;
+            --$aceCount;
         }
 
         return $value;

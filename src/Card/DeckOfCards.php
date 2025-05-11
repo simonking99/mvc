@@ -28,7 +28,6 @@ class DeckOfCards
     }
 
     /**
-     * @param int $count
      * @return array<int, Card>
      */
     public function draw(int $count = 1): array

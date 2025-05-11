@@ -12,8 +12,12 @@ class Blackjack
     /** @var Player[] */
     private array $players = [];
 
+    /**
+     * @param Player[] $players
+     */
     public function __construct(array $players)
     {
+        /** @var Player[] $players */
         foreach ($players as $player) {
             $this->players[] = $player;
             $this->games[] = new Game();
@@ -28,11 +32,13 @@ class Blackjack
         return $this->dealerGame;
     }
 
+    /** @return Player[] */
     public function getPlayers(): array
     {
         return $this->players;
     }
 
+    /** @return Game[] */
     public function getGames(): array
     {
         return $this->games;
@@ -53,6 +59,7 @@ class Blackjack
                 return false;
             }
         }
+
         return true;
     }
 
@@ -74,22 +81,22 @@ class Blackjack
             $player = $this->players[$index];
             $playerScore = $calculator->calculate($game->getPlayerHand());
             $dealerScore = $calculator->calculate($dealerHand);
-            $blackjack = ($playerScore === 21 && $game->getPlayerHand()->getNumberOfCards() === 2);
+            $blackjack = (21 === $playerScore && 2 === $game->getPlayerHand()->getNumberOfCards());
 
             if ($playerScore > 21) {
-                $game->setWinner("Dealer Wins");
+                $game->setWinner('Dealer Wins');
                 $player->applyLoss();
             } elseif ($dealerScore > 21) {
-                $game->setWinner("Player Wins");
+                $game->setWinner('Player Wins');
                 $player->applyWin($blackjack);
             } elseif ($playerScore > $dealerScore) {
-                $game->setWinner("Player Wins");
+                $game->setWinner('Player Wins');
                 $player->applyWin($blackjack);
             } elseif ($playerScore < $dealerScore) {
-                $game->setWinner("Dealer Wins");
+                $game->setWinner('Dealer Wins');
                 $player->applyLoss();
             } else {
-                $game->setWinner("Draw");
+                $game->setWinner('Draw');
             }
 
             $player->resetBet();
@@ -106,8 +113,9 @@ class Blackjack
         $this->games = array_values($this->games);
     }
 
+    /** @return Player[] */
     public function getActivePlayers(): array
     {
-        return array_filter($this->players, fn($p) => !$p->isBankrupt());
+        return array_filter($this->players, fn ($p) => !$p->isBankrupt());
     }
 }

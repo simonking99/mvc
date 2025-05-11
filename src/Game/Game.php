@@ -60,7 +60,7 @@ class Game
 
     private function registerAceValue(Card $card, CardHand $hand): void
     {
-        if ($card->getValue() !== 'A') {
+        if ('A' !== $card->getValue()) {
             return;
         }
 
@@ -72,7 +72,7 @@ class Game
             }
 
             $v = $c->getValue();
-            if ($v === 'A') {
+            if ('A' === $v) {
                 $score += $this->aceValues[spl_object_id($c)] ?? 1;
             } elseif (in_array($v, ['J', 'Q', 'K'])) {
                 $score += 10;
@@ -90,7 +90,7 @@ class Game
 
         foreach ($hand->getCards() as $card) {
             $value = $card->getValue();
-            if ($value === 'A') {
+            if ('A' === $value) {
                 $score += $this->aceValues[spl_object_id($card)] ?? 1;
             } elseif (in_array($value, ['J', 'Q', 'K'])) {
                 $score += 10;
@@ -105,15 +105,15 @@ class Game
     public function checkGameStatus(): void
     {
         $playerScore = $this->calculateScore($this->playerHand);
-    
+
         if ($playerScore > 21) {
             $this->gameOver = true;
-            $this->winner = "Player Bust";
+            $this->winner = 'Player Bust';
         } elseif ($this->hasStood) {
             $this->gameOver = true; // Markera spelet som klart för denna spelare
-        } elseif ($playerScore === 21 && $this->playerHand->getNumberOfCards() === 2) {
+        } elseif (21 === $playerScore && 2 === $this->playerHand->getNumberOfCards()) {
             $this->gameOver = true;
-            $this->winner = "Player Wins";
+            $this->winner = 'Player Wins';
         }
     }
 
@@ -139,15 +139,15 @@ class Game
         $dealerScore = $this->calculateScore($this->dealerHand);
 
         if ($playerScore > 21) {
-            $this->winner = "Dealer Wins"; // Spelaren bustar
+            $this->winner = 'Dealer Wins'; // Spelaren bustar
         } elseif ($dealerScore > 21) {
-            $this->winner = "Player Wins"; // Dealern bustar
+            $this->winner = 'Player Wins'; // Dealern bustar
         } elseif ($playerScore > $dealerScore) {
-            $this->winner = "Player Wins";
+            $this->winner = 'Player Wins';
         } elseif ($playerScore < $dealerScore) {
-            $this->winner = "Dealer Wins";
+            $this->winner = 'Dealer Wins';
         } else {
-            $this->winner = "Draw";
+            $this->winner = 'Draw';
         }
 
         $this->gameOver = true;
@@ -177,5 +177,5 @@ class Game
     {
         $this->winner = $result;
         $this->gameOver = true;
-    }   
+    }
 }

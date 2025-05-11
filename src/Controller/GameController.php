@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Game\Game;
 use App\Game\ScoreCalculator;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
@@ -42,7 +42,7 @@ class GameController extends AbstractController
         $winner = '';
         if ($playerScore > 21) {
             $winner = 'Dealer Wins';
-        } elseif ($playerScore == 21) {
+        } elseif (21 == $playerScore) {
             $winner = 'Player Wins';
         }
 
@@ -71,7 +71,7 @@ class GameController extends AbstractController
         $playerScore = $calculator->calculate($game->getPlayerHand());
         $dealerScore = $calculator->calculate($game->getDealerHand());
 
-        if ($playerScore == 21) {
+        if (21 == $playerScore) {
             return $this->redirectToRoute('game_stand');
         }
 
@@ -117,6 +117,7 @@ class GameController extends AbstractController
     public function reset(SessionInterface $session): Response
     {
         $session->remove('game');
+
         return $this->redirectToRoute('game_start');
     }
 }

@@ -9,7 +9,7 @@ class Card
 {
     protected string $suit;  // The suit of the card.
     protected string $value; // The value of the card.
-    
+
     /**
      * Create a card with a suit and value.
      */
@@ -53,6 +53,6 @@ class Card
 
     public function getAsString(): string
     {
-        return $this->value . $this->suit;
+        return $this->value.$this->suit;
     }
 }

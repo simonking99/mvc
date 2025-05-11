@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
@@ -70,7 +69,7 @@ class ApiController extends AbstractController
         return $this->json(
             [
                 'title' => 'API Overview',
-                'endpoints' => $endpoints
+                'endpoints' => $endpoints,
             ],
             200,
             [],
@@ -83,16 +82,16 @@ class ApiController extends AbstractController
     {
         date_default_timezone_set('Europe/Stockholm');
         $quotes = [
-            "Do or do not. There is no try. - Yoda",
+            'Do or do not. There is no try. - Yoda',
             "Life is what happens when you're busy making other plans. - John Lennon",
-            "The only way to do great work is to love what you do. - Steve Jobs",
-            "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+            'The only way to do great work is to love what you do. - Steve Jobs',
+            'Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill',
             "You miss 100% of the shots you don't take. - Wayne Gretzky",
-            "Be yourself; everyone else is already taken. - Oscar Wilde",
-            "Happiness is not something ready-made. It comes from your own actions. - Dalai Lama",
-            "In the middle of every difficulty lies opportunity. - Albert Einstein",
-            "The truth is rarely pure and never simple. - Oscar Wilde",
-            "A day without laughter is a day wasted. - Charlie Chaplin",
+            'Be yourself; everyone else is already taken. - Oscar Wilde',
+            'Happiness is not something ready-made. It comes from your own actions. - Dalai Lama',
+            'In the middle of every difficulty lies opportunity. - Albert Einstein',
+            'The truth is rarely pure and never simple. - Oscar Wilde',
+            'A day without laughter is a day wasted. - Charlie Chaplin',
         ];
 
         $quote = $quotes[array_rand($quotes)];

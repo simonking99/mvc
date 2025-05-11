@@ -34,8 +34,10 @@ class Player
     {
         if ($amount > 0 && $amount <= $this->bank) {
             $this->bet = $amount;
+
             return true;
         }
+
         return false;
     }
 

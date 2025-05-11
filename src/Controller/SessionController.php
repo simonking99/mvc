@@ -3,20 +3,20 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class SessionController extends AbstractController
 {
-    #[Route("/session", name: "session")]
+    #[Route('/session', name: 'session')]
     public function sessionDebug(SessionInterface $session): Response
     {
         $sessionData = $session->all();
+
         return $this->render('session/session_debug.html.twig', [
-            'sessionData' => $sessionData
-            ]);
+            'sessionData' => $sessionData,
+        ]);
     }
 
     #[Route('/session/delete', name: 'session_delete')]

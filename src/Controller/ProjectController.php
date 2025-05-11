@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Game\Blackjack;
 use App\Game\Player;
 use App\Game\ScoreCalculator;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class ProjectController extends AbstractController
 {
@@ -32,13 +32,15 @@ final class ProjectController extends AbstractController
             $names = array_filter([
                 $request->request->get('player1'),
                 $request->request->get('player2'),
-                $request->request->get('player3')
-            ]);
+                $request->request->get('player3'),
+            ], fn ($n) => is_string($n) && '' !== $n);
 
-            $players = array_map(fn($name) => new Player($name), $names);
+            $players = array_map(fn (string $name) => new Player($name), $names);
+
             $game = new Blackjack($players);
 
             $session->set('blackjack', $game);
+
             return $this->redirectToRoute('proj_play');
         }
 
@@ -84,7 +86,7 @@ final class ProjectController extends AbstractController
             'gameOver' => $gameOver,
             'dealerHand' => $dealerHand,
             'dealerScore' => $dealerScore,
-            'allDone' => $allDone
+            'allDone' => $allDone,
         ]);
     }
 
@@ -110,21 +112,19 @@ final class ProjectController extends AbstractController
             return $this->redirectToRoute('proj_play');
         }
 
-        if ($action === 'bet') {
+        if ('bet' === $action) {
             $amount = intval($request->request->get('bet') ?? 0);
             $blackjack->placeBet($player, $amount);
 
             if ($blackjack->allBetsPlaced()) {
                 $blackjack->startRound();
             }
-
-        } elseif ($action === 'hit') {
+        } elseif ('hit' === $action) {
             $game->dealCardToPlayer();
             if ($game->calculateScore($game->getPlayerHand()) > 21) {
                 $game->checkWinner();
             }
-
-        } elseif ($action === 'stand') {
+        } elseif ('stand' === $action) {
             $game->markAsStood();
         }
 
@@ -139,8 +139,9 @@ final class ProjectController extends AbstractController
         if ($allDone) {
             $blackjack->finishRound();
 
-            if (count($blackjack->getPlayers()) === 0) {
+            if (0 === count($blackjack->getPlayers())) {
                 $session->clear();
+
                 return $this->redirectToRoute('proj_login');
             }
         }
@@ -166,6 +167,7 @@ final class ProjectController extends AbstractController
     public function reset(SessionInterface $session): Response
     {
         $session->clear();
+
         return $this->redirectToRoute('proj_login');
     }
 }

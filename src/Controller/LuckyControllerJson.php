@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerJson
 {
-    #[Route("/api/lucky/number", name: "api_lucky_number")]
+    #[Route('/api/lucky/number', name: 'api_lucky_number')]
     public function jsonNumber(): Response
     {
         $number = random_int(0, 100);
@@ -22,6 +22,7 @@ class LuckyControllerJson
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
+
         return $response;
     }
 }
