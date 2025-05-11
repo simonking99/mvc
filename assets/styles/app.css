@@ -437,7 +437,7 @@ nav a:hover {
 }
 
 .project-header {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(135deg, #065f46, #065f46, #065f46);
     color: white;
     height: 120px;
     display: flex;
@@ -454,7 +454,7 @@ nav a:hover {
 }
 
 .project-footer {
-    background: linear-gradient(135deg, #232526, #414345);
+    background: linear-gradient(135deg, #065f46, #065f46);
     color: white;
     height: 100px;
     display: flex;
